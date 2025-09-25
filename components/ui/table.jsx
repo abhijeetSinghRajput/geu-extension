@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 const Table = React.forwardRef(({ className, ...props }, ref) => (
     <table
       ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn("w-full caption-bottom text-[14px]", className)}
       {...props} />
 ))
 Table.displayName = "Table"
@@ -67,7 +67,7 @@ TableCell.displayName = "TableCell"
 const TableCaption = React.forwardRef(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn("mt-4 text-sm text-muted-foreground", className)}
+    className={cn("mt-4 text-[14px] text-muted-foreground", className)}
     {...props} />
 ))
 TableCaption.displayName = "TableCaption"

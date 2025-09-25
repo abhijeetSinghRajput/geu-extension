@@ -41,7 +41,7 @@ export const CodeBlock = ({
   const prismTheme = theme === "dark" ? atomDark : prism;
 
   return (
-    <div className="codeblock relative w-full my-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 p-4 pb-1 font-mono text-sm">
+    <div className="codeblock relative w-full my-2 rounded-lg bg-zinc-100 dark:bg-zinc-900 p-4 pb-1 font-mono text-[14px]">
       <div className="flex justify-between items-center pb-2">
         <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide">
           {tabsExist
@@ -49,7 +49,7 @@ export const CodeBlock = ({
                 <button
                   key={index}
                   onClick={() => setActiveTab(index)}
-                  className={`px-3 py-1 text-xs transition-colors font-sans rounded-md ${
+                  className={`px-3 py-1 text-[12px] transition-colors font-sans rounded-md ${
                     activeTab === index
                       ? "bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white"
                       : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
@@ -59,7 +59,7 @@ export const CodeBlock = ({
                 </button>
               ))
             : filename && (
-                <div className="text-xs text-zinc-500 dark:text-zinc-400">{filename}</div>
+                <div className="text-[12px] text-zinc-500 dark:text-zinc-400">{filename}</div>
               )}
         </div>
       </div>

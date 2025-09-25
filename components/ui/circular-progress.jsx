@@ -59,12 +59,12 @@ const CircularProgress = ({
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         {label ? (
-          <span className="text-base font-bold">{label}</span>
+          <span className="text-[16px] font-bold">{label}</span>
         ) : showPercentage ? (
-          <span className="text-base font-bold">{percentage}%</span>
+          <span className="text-[16px] font-bold">{percentage}%</span>
         ) : null}
         {subLabel && (
-          <span className="text-muted-foreground text-xs">{subLabel}</span>
+          <span className="text-muted-foreground text-[12px]">{subLabel}</span>
         )}
       </div>
     </div>

@@ -25,7 +25,7 @@ const App = () => {
               <div>Title</div>
               <Avatar >
                 <AvatarImage src={"./wxt.svg"} className="object-contain"/>
-                <AvatarFallback className="text-sm text-muted-foreground font-medium">AK</AvatarFallback>
+                <AvatarFallback className="text-[14px] text-muted-foreground font-medium">AK</AvatarFallback>
               </Avatar>
               </div>
               
@@ -43,7 +43,7 @@ const App = () => {
       <div>Title</div>
       <Avatar >
         <AvatarImage src={"./wxt.svg"} className="object-contain"/>
-        <AvatarFallback className="text-sm text-muted-foreground font-medium">AK</AvatarFallback>
+        <AvatarFallback className="text-[14px] text-muted-foreground font-medium">AK</AvatarFallback>
       </Avatar>
     </div>
     
