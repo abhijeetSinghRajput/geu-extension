@@ -1,0 +1,17 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,                     // allow importing .js/.jsx files
+    "checkJs": false,                    // optional: skip type checking of JS
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",                       // required for @/ alias
+    "paths": {
+      "@/*": ["./*"]                      // resolve @/ to project root
+    }
+  },
+  "include": [
+    "entrypoints/**/*",
+    "components/**/*"
+  ]
+}
