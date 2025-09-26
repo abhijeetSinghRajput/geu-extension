@@ -51,9 +51,11 @@ const Backlogs = ({ backlogs }) => {
       <CardHeader className="border bg-muted">
         <div className="flex justify-between items-start">
           <div className="space-y-2">
-            <CardTitle>Backlog Details</CardTitle>
+            <CardTitle className="text-[14px]">Backlog Details</CardTitle>
             <CardDescription className="flex gap-2">
-              <Badge variant="destructive">{`${backlogs.length} Backlogs`}</Badge>
+              <Badge
+                variant={backlogs.length > 0 ? "destructive" : "success"}
+              >{`${backlogs.length} Backlogs`}</Badge>
               that need to be cleared
             </CardDescription>
           </div>
@@ -63,7 +65,7 @@ const Backlogs = ({ backlogs }) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="ml-auto gap-1 bg-input"
+                  className="ml-auto gap-1 bg-input text-[14px]"
                 >
                   <span>Columns</span>
                   <ChevronDown className="h-4 w-4" />
@@ -97,11 +99,12 @@ const Backlogs = ({ backlogs }) => {
             />
           </div>
         ) : (
-          <div className="flex h-[60vh] flex-col items-center justify-center py-12">
-
+          <div className="flex h-full max-h-[60vh] flex-col items-center justify-center py-12">
             <ClipboardCheck className="w-12 h-12 text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium mb-1">No Backlogs Found</h3>
-            <p className="text-muted-foreground text-center max-w-md">
+            <h3 className="text-[18px] font-semibold mb-1">
+              No Backlogs Found
+            </h3>
+            <p className="text-muted-foreground text-center max-w-md text-[14px]">
               You have cleared all your subjects. Great job!
             </p>
           </div>

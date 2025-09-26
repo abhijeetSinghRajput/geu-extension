@@ -9,7 +9,7 @@ const FeeError = (props) => {
       <h2 className="text-2xl sm:text-3xl font-bold p-0 m-0">Fee Submissions</h2>
 
       <Tabs defaultValue="course" className="w-full">
-        <TabsList className="grid h-[40px] grid-cols-3 w-max">
+        <TabsList className="grid h-[36px] grid-cols-3 w-max">
           <TabsTrigger value="course" className="h-full">
             <FileTextIcon className="w-4 h-4 mr-2" />
             Course Fees

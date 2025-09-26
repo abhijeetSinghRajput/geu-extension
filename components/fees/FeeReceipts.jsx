@@ -132,7 +132,7 @@ const FeeReceipts = ({ data }) => {
         <CardHeader className="border bg-muted">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="flex items-center gap-2 text-[12px]">
+              <CardTitle className="flex items-center gap-2 text-[14px]">
                 Fee Receipts
               </CardTitle>
               <CardDescription>
@@ -188,7 +188,7 @@ const FeeReceipts = ({ data }) => {
           ) : (
             <div className="flex flex-col items-center justify-center py-12">
               <InfoIcon className="w-12 h-12 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-medium mb-1">No Receipts Found</h3>
+              <h3 className="text-lg font-semibold mb-1">No Receipts Found</h3>
               <p className="text-muted-foreground text-center max-w-md">
                 There are no payment receipts associated with your account.
               </p>

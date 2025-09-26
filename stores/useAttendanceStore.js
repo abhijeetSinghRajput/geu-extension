@@ -16,7 +16,6 @@ export const useAttendanceStore = create((set, get) => ({
 
   getAllAttendanceSubjects: async ({ RegID }) => {
     if (!RegID) return;
-    console.log({ RegID });
     set({
       isLoadingSubjects: true,
       errors: { ...get().errors, getAllAttendanceSubjects: null },

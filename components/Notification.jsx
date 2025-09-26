@@ -97,7 +97,7 @@ const Notification = ({ variant = "default", className }) => {
             {notifications.map((n) => (
               <Card key={n.id} className="bg-input/30 shadow-sm">
                 <CardHeader className="flex-row items-center justify-between flex-wrap gap-2 p-3 pb-0">
-                  <CardTitle className="text-[14px] font-medium">
+                  <CardTitle className="text-[14px] font-semibold">
                     {n.title}
                   </CardTitle>
                   {n.badge && <Badge className="capitalize">{n.badge}</Badge>}

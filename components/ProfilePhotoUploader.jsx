@@ -125,7 +125,7 @@ const ProfilePhotoUploader = ({ img }) => {
         <Button
           type="button"
           size="icon"
-          className={cn("size-[32px] rounded-xl text-[16px]")}
+          className={cn("size-[32px] rounded-xl text-[14px]")}
         >
           <Camera className="size-[24px]" />
         </Button>
@@ -159,7 +159,7 @@ const ProfilePhotoUploader = ({ img }) => {
 
             {fileSize && (
               <p className="text-[14px] text-muted-foreground">
-                Compress to: <span className="font-medium">{fileSize} KB</span>
+                Compress to: <span className="font-semibold">{fileSize} KB</span>
               </p>
             )}
 
@@ -178,7 +178,7 @@ const ProfilePhotoUploader = ({ img }) => {
                 type="button"
                 onClick={() => inputRef.current.click()}
                 disabled={compressing || uploadingAvatar}
-                className="h-[38px] px-6 rounded-xl text-[14px] font-medium"
+                className="h-[38px] px-6 rounded-xl text-[14px] font-semibold"
               >
                 <ImageIcon /> Choose
               </Button>
@@ -186,7 +186,7 @@ const ProfilePhotoUploader = ({ img }) => {
               <Button
                 onClick={handleUpload}
                 disabled={!file || compressing || uploadingAvatar}
-                className="h-[38px] px-6 rounded-xl text-[14px] font-medium"
+                className="h-[38px] px-6 rounded-xl text-[14px] font-semibold"
               >
                 {uploadingAvatar ? (
                   <>

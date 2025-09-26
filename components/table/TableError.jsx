@@ -32,7 +32,7 @@ const TableError = ({
         <div className="absolute z-20 inset-0 bg-background/70 flex items-center justify-center p-4">
           <div className="text-center space-y-4">
             <AlertTriangle className="h-12 w-12 mx-auto text-destructive" />
-            <h3 className="text-2xl font-medium text-destructive">{heading}</h3>
+            <h3 className="text-2xl font-semibold text-destructive">{heading}</h3>
             <p className="text-destructive max-w-md">
               {description ||
                 "We couldn't load the attendance records. Please check your connection and try again."}

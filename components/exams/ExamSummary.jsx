@@ -36,20 +36,20 @@ const ExamSummary = () => {
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2">
+    <div className="w-full px-2 sm:px-4 md:px-6 py-2">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex justify-between items-center gap-2 py-2"
       >
         {Array.isArray(examSummary) && examSummary[0]?.CGPA && (
-          <div className="font-semibold">CGPA {examSummary[0].CGPA}</div>
+          <div className="font-semibold text-[14px]">CGPA {examSummary[0].CGPA}</div>
         )}
       </motion.div>
-      <Tabs defaultValue="results">
-        <TabsList className="grid h-[40px] grid-cols-2 w-max">
-          <TabsTrigger value="results">Result</TabsTrigger>
-          <TabsTrigger value="backlogs">Backlogs</TabsTrigger>
+      <Tabs defaultValue="results" className="w-full">
+        <TabsList className="grid h-[36px] grid-cols-2 w-max">
+          <TabsTrigger value="results" className="h-full">Result</TabsTrigger>
+          <TabsTrigger value="backlogs" className="h-full">Backlogs</TabsTrigger>
         </TabsList>
         <TabsContent value="results">
           <Result examSummary={examSummary} />

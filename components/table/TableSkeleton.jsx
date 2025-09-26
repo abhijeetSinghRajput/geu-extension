@@ -16,27 +16,23 @@ const TableSkeleton = ({ className, heading }) => {
   return (
     <div
       className={cn(
-        "max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2 ",
+        "max-w-screen px-2 sm:px-4 md:px-6 py-2 ",
         className
       )}
     >
 
       <Card className="overflow-hidden">
         <div className="sticky top-0 z-10 bg-muted">
-          <div className="p-4 border-b flex justify-between gap-4">
+          <div className="p-[16px] border-b flex justify-between gap-[16px]">
             <div className="space-y-1">
-              <div className="flex items-center gap-3">
-                <Skeleton className="text-xl font-semibold h-7 w-28" />
-                <Skeleton className={"h-7 w-16"} />
+              <div className="flex items-center gap-[12px]">
+                <Skeleton className="text-xl font-semibold h-[28px] w-[112px]" />
+                <Skeleton className={"h-[28px] w-[64px]"} />
               </div>
-              <Skeleton className={"h-5 w-38"} />
+              <Skeleton className={"h-[20px] w-38"} />
             </div>
 
-            <Skeleton
-              variant="outline"
-              size="sm"
-              className="ml-auto gap-1 bg-input h-8 w-24"
-            />
+            <Skeleton className="ml-auto gap-1 bg-input h-8 w-[96px]"/>
           </div>
         </div>
         <ScrollArea className="w-full whitespace-nowrap">
@@ -45,16 +41,16 @@ const TableSkeleton = ({ className, heading }) => {
               {[...Array(7)].map((_, idx) => (
                 <TableRow key={idx} className={idx === 0 && "bg-muted/30 h-14"}>
                   <TableCell>
-                    <Skeleton className={"h-7 w-24"} />
+                    <Skeleton className={"h-[28px] w-[96px]"} />
                   </TableCell>
                   <TableCell>
-                    <Skeleton className={"h-7 w-24"} />
+                    <Skeleton className={"h-[28px] w-[96px]"} />
                   </TableCell>
                   <TableCell>
-                    <Skeleton className={"h-7 w-24"} />
+                    <Skeleton className={"h-[28px] w-[96px]"} />
                   </TableCell>
                   <TableCell>
-                    <Skeleton className={"h-7 w-24"} />
+                    <Skeleton className={"h-[28px] w-[96px]"} />
                   </TableCell>
                 </TableRow>
               ))}

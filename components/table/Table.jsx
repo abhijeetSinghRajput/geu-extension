@@ -116,7 +116,7 @@ const DataTable = ({
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.2 }}
-                    className={`text-left align-middle font-medium text-muted-foreground p-0`}
+                    className={`text-left align-middle font-semibold text-muted-foreground p-0`}
                   >
                     {column.sortable ? (
                       <TooltipWrapper content={"Sort Data"}>
@@ -124,7 +124,7 @@ const DataTable = ({
                           variant="ghost"
                           onClick={() => requestSort(column.id)}
                           className={cn(
-                            "px-4 py-3 gap-0.5 h-auto w-full rounded-none justify-start font-medium hover:bg-muted",
+                            "px-4 py-3 gap-0.5 h-auto w-full rounded-none justify-start font-semibold hover:bg-muted",
                             numericColumns.includes(column.id) &&
                               "text-right justify-start flex-row-reverse"
                           )}
@@ -159,7 +159,7 @@ const DataTable = ({
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2 }}
                     className={`px-4 py-3 align-middle [&:has([role=checkbox])]:pr-0 ${
-                      numericColumns.includes(column.id) ? "text-right font-medium" : ""
+                      numericColumns.includes(column.id) ? "text-right font-semibold" : ""
                     }`}
                   >
                     {renderCellContent(item, column)}
@@ -183,7 +183,7 @@ const DataTable = ({
                       colSpan={1}
                       className={cn(
                         "px-4 py-3",
-                        numericColumns.includes(column.id) && "text-right font-medium",
+                        numericColumns.includes(column.id) && "text-right font-semibold",
                         footerValue === undefined && "opacity-0" // Hide but maintain layout
                       )}
                     >

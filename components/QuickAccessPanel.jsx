@@ -34,7 +34,7 @@ const HomeDialog = () => (
 const AttendanceDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle className="text-2xl">
+      <DialogTitle className="text-2xl p-0 m-0">
         Attendance
       </DialogTitle>
     </DialogHeader>
@@ -43,7 +43,7 @@ const AttendanceDialog = () => (
 );
 
 const ExamDialog = () => (
-  <DialogContent className="max-w-max">
+  <DialogContent className="max-w-[512px] w-full max-h-[70vh] h-full">
     <DialogHeader>
       <DialogTitle className="text-2xl p-0 m-0">
         Exam Summary
@@ -54,7 +54,7 @@ const ExamDialog = () => (
 );
 
 const FeeDialog = () => (
-  <DialogContent className="max-w-max max-h-[90vh]">
+  <DialogContent className="max-w-screen-sm w-full h-[90vh]">
     <DialogHeader>
       <DialogTitle className="sr-only text-2xl">
         Fee
@@ -89,7 +89,7 @@ const QuickAccessPanel = () => {
         <DropdownMenuTrigger asChild>
           <Button
             size="lg"
-            className="z-[1001] size-[48px] rounded-full text-[16px]"
+            className="z-[1001] size-[48px] rounded-full text-[14px]"
           >
             <Compass />
           </Button>

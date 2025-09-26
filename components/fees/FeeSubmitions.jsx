@@ -109,7 +109,7 @@ const FeeSubmissions = () => {
         <h2 className="text-2xl sm:text-3xl font-bold p-0 m-0">Fee Submissions</h2>
 
         <Tabs defaultValue="course" className="w-full">
-          <TabsList className="grid h-[40px] grid-cols-3 w-max">
+          <TabsList className="grid h-[36px] grid-cols-3 w-max">
             <TabsTrigger value="course" className="h-full">
               <FileTextIcon className="size-4 mr-2" />
               Course Fees
@@ -187,7 +187,7 @@ const FeeSubmissions = () => {
                       </div>
                     )}
                     <div className="border-t pt-2 mt-2">
-                      <div className="flex justify-between font-medium">
+                      <div className="flex justify-between font-semibold">
                         <span>Total Amount Paid:</span>
                         <span>
                           ₹{courseTotals.ReceivedAmount.toLocaleString()}
@@ -198,7 +198,7 @@ const FeeSubmissions = () => {
                 </div>
                 {hasHostelFees && (
                   <div className="flex-1">
-                    <h4 className="font-medium mb-3">Hostel Payment Details</h4>
+                    <h4 className="font-semibold mb-3">Hostel Payment Details</h4>
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">
@@ -217,7 +217,7 @@ const FeeSubmissions = () => {
                         </div>
                       )}
                       <div className="border-t pt-2 mt-2">
-                        <div className="flex justify-between font-medium">
+                        <div className="flex justify-between font-semibold">
                           <span>Total Amount Paid:</span>
                           <span>
                             ₹{hostelTotals.ReceivedAmount.toLocaleString()}

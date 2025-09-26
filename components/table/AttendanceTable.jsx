@@ -48,7 +48,7 @@ const AttendanceTable = () => {
   }, [profile?.RegID]);
 
   if (isLoadingSubjects) {
-    return <TableSkeleton heading={"Attendance"}/>;
+    return <TableSkeleton heading={"Attendance"} />;
   }
 
   if (errors.getAllAttendanceSubjects || !attendance) {
@@ -70,7 +70,6 @@ const AttendanceTable = () => {
     TotalLeave = 0,
     TotalPercentage = 0,
   } = attendance?.data ?? {};
-  console.log(attendance);
 
   const hasValidDates =
     isValid(parseISO(DateFrom)) && isValid(parseISO(DateTo));
@@ -124,22 +123,25 @@ const AttendanceTable = () => {
             </div>
 
             <div className="flex gap-2">
-              {!Array.isArray(attendance.state) || attendance.state.length === 0 && (<Button
-                size="icon"
-                variant="outline"
-                className="bg-input size-8"
-                onClick={() => {
-                  getAllAttendanceSubjects({ RegID: profile?.RegID });
-                }}
-              >
-                <RotateCwIcon/>
-              </Button>)}
+              {!Array.isArray(attendance.state) ||
+                (attendance.state.length === 0 && (
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="bg-input size-8"
+                    onClick={() => {
+                      getAllAttendanceSubjects({ RegID: profile?.RegID });
+                    }}
+                  >
+                    <RotateCwIcon />
+                  </Button>
+                ))}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="ml-auto gap-1 bg-input"
+                    className="ml-auto gap-1 bg-input text-[14px]"
                   >
                     <span>Columns</span>
                     <ChevronDown className="h-4 w-4" />
@@ -195,12 +197,12 @@ const AttendanceTable = () => {
                 {/* Left side - Subject Code and Faculty */}
                 <div className="space-y-2 text-[14px]">
                   <div className="flex gap-2 items-center">
-                    <Clipboard className="text-muted-foreground size-5" />
-                    <p className="font-medium">{selectedSubject.SubjectCode}</p>
+                    <Clipboard className="text-muted-foreground size-[20px]" />
+                    <p className="font-semibold m-0">{selectedSubject.SubjectCode}</p>
                   </div>
                   <div className="flex gap-2 items-center">
-                    <User2 className="text-muted-foreground size-5" />
-                    <p className="font-medium">{selectedSubject.EMPNAME}</p>
+                    <User2 className="text-muted-foreground size-[20px]" />
+                    <p className="font-semibold m-0">{selectedSubject.EMPNAME}</p>
                   </div>
                 </div>
 

@@ -31,7 +31,7 @@ const Result = ({ examSummary }) => {
                   Year/Sem {exam.YearSem}
                 </CardTitle>
                 <Badge
-                  variant={exam.Result === "Fail" ? "destructive" : "default"}
+                  variant={exam.Result === "Fail" ? "destructive" : "success"}
                 >
                   {exam.Result}
                 </Badge>
@@ -53,14 +53,14 @@ const Result = ({ examSummary }) => {
             <CardContent className="flex p-6 justify-between items-start">
               <div>
                 {/* Exam Details */}
-                <div className="">
+                <div className="text-[14px]">
                   <div className="flex gap-2 items-center">
                     <p className="text-muted-foreground">Subjects</p>
-                    <p className="font-medium text-xl ">{exam.TotalSubject}</p>
+                    <p className="font-semibold text-[20px]">{exam.TotalSubject}</p>
                   </div>
                   <div className="flex gap-2 items-center">
                     <p className="text-muted-foreground">Backlogs</p>
-                    <p className="font-medium text-xl ">{exam.TotalBack}</p>
+                    <p className="font-semibold text-[20px]">{exam.TotalBack}</p>
                   </div>
                 </div>
               </div>

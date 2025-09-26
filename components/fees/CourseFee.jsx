@@ -51,7 +51,7 @@ const CourseFee = ({ data, totals, columns }) => {
         <CardHeader className="border bg-muted">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="text-[12px]">Course Fee Details</CardTitle>
+              <CardTitle className="text-[14px]">Course Fee Details</CardTitle>
               <CardDescription>
                 {data[0]?.YS || "Current Year"} Fee Breakdown
               </CardDescription>
@@ -121,7 +121,7 @@ const CourseFee = ({ data, totals, columns }) => {
           ) : (
             <div className="flex h-[60vh] flex-col items-center justify-center py-12">
               <InfoIcon className="w-12 h-12 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-medium mb-1">No Course Fees Found</h3>
+              <h3 className="text-lg font-semibold mb-1">No Course Fees Found</h3>
               <p className="text-muted-foreground text-center max-w-md">
                 There are no course fees associated with your account.
               </p>

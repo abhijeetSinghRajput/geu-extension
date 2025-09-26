@@ -33,7 +33,6 @@ export const useExamStore = create((set, get) => ({
       // Extract and parse ExamSummary
       const examSummary = JSON.parse(res.data.ExamSummary || "[]");
       set({ examSummary });
-      console.log(examSummary);
     } catch (error) {
       const message =
         error?.response?.data.message || "Failed to fetch exam summary";
@@ -116,7 +115,6 @@ export const useExamStore = create((set, get) => ({
       );
       const backlogs = JSON.parse(res.data._backData || "[]");
       set({ backlogs });
-      console.log(backlogs);
     } catch (error) {
       const message =
         error?.response?.data.message || "Failed to fetch backlogs";
