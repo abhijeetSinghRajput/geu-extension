@@ -34,7 +34,7 @@ const ExamSummary = () => {
       />
     );
   }
-  
+
   return (
     <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2">
       <motion.div
@@ -46,19 +46,18 @@ const ExamSummary = () => {
           <div className="font-semibold">CGPA {examSummary[0].CGPA}</div>
         )}
       </motion.div>
-        <Tabs defaultValue="results">
-          <TabsList>
-            <TabsTrigger value="results">Result</TabsTrigger>
-            <TabsTrigger value="backlogs">Backlogs</TabsTrigger>
-          </TabsList>
-          <TabsContent value="results">
-            <Result examSummary={examSummary}/>
-          </TabsContent>
-          <TabsContent value="backlogs">
-            <Backlogs backlogs={backlogs}/>
-          </TabsContent>
-        </Tabs>
-      
+      <Tabs defaultValue="results">
+        <TabsList className="grid h-[40px] grid-cols-2 w-max">
+          <TabsTrigger value="results">Result</TabsTrigger>
+          <TabsTrigger value="backlogs">Backlogs</TabsTrigger>
+        </TabsList>
+        <TabsContent value="results">
+          <Result examSummary={examSummary} />
+        </TabsContent>
+        <TabsContent value="backlogs">
+          <Backlogs backlogs={backlogs} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

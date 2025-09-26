@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { useStudentStore } from "./useStudentStore";
 import axios from "axios";
 import qs from "qs";
+import { axiosInstance } from "@/lib/axiosInstance";
 
 export const useAttendanceStore = create((set, get) => ({
   attendance: null,
@@ -23,8 +24,8 @@ export const useAttendanceStore = create((set, get) => ({
 
     try {
       console.log("fetching attendance...");
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentAcademic/GetSubjectDetailStudentAcademicFromLive`,
+      const res = await axiosInstance.post(
+        `Web_StudentAcademic/GetSubjectDetailStudentAcademicFromLive`,
         { RegID }
       );
       const state = JSON.parse(res.data.state || "[]");
@@ -81,8 +82,8 @@ export const useAttendanceStore = create((set, get) => ({
       };
 
       // Fetch from API
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentAcademic/FillAttendanceDetail_ostulgn`,
+      const res = await axiosInstance.post(
+        `Web_StudentAcademic/FillAttendanceDetail_ostulgn`,
         qs.stringify(payload),
         {
           headers: {

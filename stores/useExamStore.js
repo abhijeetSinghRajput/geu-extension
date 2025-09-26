@@ -1,3 +1,4 @@
+import { axiosInstance } from "@/lib/axiosInstance";
 import axios from "axios";
 import { toast } from "sonner";
 import { create } from "zustand";
@@ -25,8 +26,8 @@ export const useExamStore = create((set, get) => ({
       errors: { ...get().errors, getExamSummary: null },
     });
     try {
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentAcademic/GetStudentExamSummary`
+      const res = await axiosInstance.post(
+        `Web_StudentAcademic/GetStudentExamSummary`
       );
 
       // Extract and parse ExamSummary
@@ -55,8 +56,8 @@ export const useExamStore = create((set, get) => ({
 
     try {
       // Step 1: Get docNo
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentAcademic/FillMarksheet`,
+      const res = await axiosInstance.post(
+        `Web_StudentAcademic/FillMarksheet`,
         { yearSem },
         {
           headers: {
@@ -70,7 +71,7 @@ export const useExamStore = create((set, get) => ({
 
       // Step 2: Fetch the PDF using docNo
       const pdfRes = await axios.get(
-        `https://student.geu.ac.in/Web_StudentAcademic/DownloadFile?docNo=${docNo}`,
+        `Web_StudentAcademic/DownloadFile?docNo=${docNo}`,
         {
           responseType: "arraybuffer", // important
           headers: { Accept: "application/pdf" },
@@ -110,8 +111,8 @@ export const useExamStore = create((set, get) => ({
       errors: { ...get().errors, getBacklogs: null },
     });
     try {
-      const res = await axios.post(
-        "https://student.geu.ac.in/Web_StudentAcademic/GetStudentBackPapers"
+      const res = await axiosInstance.post(
+        "Web_StudentAcademic/GetStudentBackPapers"
       );
       const backlogs = JSON.parse(res.data._backData || "[]");
       set({ backlogs });
@@ -142,8 +143,8 @@ export const useExamStore = create((set, get) => ({
         BackSetting: -1,
       };
 
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_Exam/GetAdmitCardSlctStudentRecord`,
+      const res = await axiosInstance.post(
+        `Web_Exam/GetAdmitCardSlctStudentRecord`,
         payload,
         {
           "Content-Type": "application/x-www-form-urlencoded",

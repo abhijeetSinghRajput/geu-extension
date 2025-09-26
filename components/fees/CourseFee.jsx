@@ -51,7 +51,7 @@ const CourseFee = ({ data, totals, columns }) => {
         <CardHeader className="border bg-muted">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle>Course Fee Details</CardTitle>
+              <CardTitle className="text-[12px]">Course Fee Details</CardTitle>
               <CardDescription>
                 {data[0]?.YS || "Current Year"} Fee Breakdown
               </CardDescription>
@@ -66,8 +66,7 @@ const CourseFee = ({ data, totals, columns }) => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="outline"
-                    size="sm"
-                    className="ml-auto gap-1 bg-input"
+                    className="ml-auto gap-1 bg-input text-[14px]"
                   >
                     <span>Columns</span>
                     <ChevronDown className="h-4 w-4" />

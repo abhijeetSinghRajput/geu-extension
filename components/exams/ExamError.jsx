@@ -5,7 +5,7 @@ import { Skeleton } from "../ui/skeleton";
 import { AlertTriangle, RefreshCw } from "lucide-react";
 import { Button } from "../ui/button";
 
-const ExamError = ({ heading = "Exam Summary", onReload, description }) => {
+const ExamError = ({ onReload, description }) => {
   return (
     
     <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2 ">
@@ -18,7 +18,6 @@ const ExamError = ({ heading = "Exam Summary", onReload, description }) => {
         <div className="absolute z-20 opacity inset-0 bg-background/70 flex items-center justify-center p-4">
           <div className="text-center space-y-4">
             <AlertTriangle className="h-12 w-12 mx-auto text-destructive" />
-            <h3 className="text-2xl font-medium text-destructive">{heading}</h3>
             <p className="text-destructive max-w-md">
               {description ||
                 "We couldn't load the attendance records. Please check your connection and try again."}

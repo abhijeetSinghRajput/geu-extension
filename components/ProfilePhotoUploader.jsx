@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
 import imageCompression from "browser-image-compression";
 import { Card, CardContent } from "./ui/card";
-import axios from "axios";
+import { axiosInstance } from "@/lib/axiosInstance";
 import { useStudentStore } from "@/stores/useStudentStore";
 
 const ProfilePhotoUploader = ({ img }) => {
@@ -26,7 +26,7 @@ const ProfilePhotoUploader = ({ img }) => {
   useEffect(() => {
     getProfile();
   }, [getProfile]);
-  
+
   const compressImage = async (imageFile) => {
     const options = {
       maxSizeMB: 0.04, // 40KB
@@ -86,8 +86,8 @@ const ProfilePhotoUploader = ({ img }) => {
     formData.append("helpSectionImages", file, "avatar.jpg");
 
     try {
-      const res = await axios.post(
-        "https://student.geu.ac.in/Web_StudentAcademic/UploadStudentImg_ostulgn",
+      const res = await axiosInstance.post(
+        "Web_StudentAcademic/UploadStudentImg_ostulgn",
         formData,
         {
           withCredentials: true, // send ERP cookies

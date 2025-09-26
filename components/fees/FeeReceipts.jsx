@@ -132,7 +132,7 @@ const FeeReceipts = ({ data }) => {
         <CardHeader className="border bg-muted">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-[12px]">
                 Fee Receipts
               </CardTitle>
               <CardDescription>
@@ -144,8 +144,7 @@ const FeeReceipts = ({ data }) => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  size="sm"
-                  className="ml-auto gap-1 bg-input"
+                  className="ml-auto gap-1 bg-input text-[14px]"
                 >
                   <span>Columns</span>
                   <ChevronDown className="h-4 w-4" />

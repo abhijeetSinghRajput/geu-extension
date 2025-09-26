@@ -150,3 +150,8 @@ button svg {
   color: hsl(var(--primary-foreground)) !important;
   background-color: hsl(var(--primary)) !important;
 }
+
+#ImgEmp {
+  height: 120px !important;
+  width: 120px !important;
+}

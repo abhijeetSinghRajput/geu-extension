@@ -45,7 +45,7 @@ const AttendanceDialog = () => (
 const ExamDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle className="text-2xl">
+      <DialogTitle className="text-2xl p-0 m-0">
         Exam Summary
       </DialogTitle>
     </DialogHeader>

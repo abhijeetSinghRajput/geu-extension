@@ -27,7 +27,7 @@ const Result = ({ examSummary }) => {
           <Card className="rounded-3xl">
             <CardHeader className="pb-0 justify-between items-center flex-row">
               <div className="flex gap-2 items-center">
-                <CardTitle className="text-lg">
+                <CardTitle className="text-[18px]">
                   Year/Sem {exam.YearSem}
                 </CardTitle>
                 <Badge

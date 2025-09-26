@@ -1,3 +1,4 @@
+import { axiosInstance } from "@/lib/axiosInstance";
 import axios from "axios";
 import qs from "qs";
 import { toast } from "sonner";
@@ -23,8 +24,8 @@ export const useFeeStore = create((set, get) => ({
     });
     try {
       const payload = qs.stringify({ FeeType: feeType, duration });
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentFinance/FillHead`,
+      const res = await axiosInstance.post(
+        `Web_StudentFinance/FillHead`,
         payload,
         {
           headers: {
@@ -59,8 +60,8 @@ export const useFeeStore = create((set, get) => ({
       errors: { ...get().errors, getFeeReceipts: null },
     });
     try {
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentFinance/GetStudentFeeReceipt_ostulgn`
+      const res = await axiosInstance.post(
+        `Web_StudentFinance/GetStudentFeeReceipt_ostulgn`
       );
       const feeReceipts = JSON.parse(res.data);
       set({ feeReceipts });
@@ -83,8 +84,8 @@ export const useFeeStore = create((set, get) => ({
     });
     try {
       // 1️⃣ Get ReceiptNo from ERP
-      const res = await axios.post(
-        `https://student.geu.ac.in/Web_StudentFinance/ShowFeeReceipt_ostulgn`,
+      const res = await axiosInstance.post(
+        `Web_StudentFinance/ShowFeeReceipt_ostulgn`,
         qs.stringify({ ReceiptModeID, BookID, CombineReceiptNo }),
         {
           headers: {
@@ -98,7 +99,7 @@ export const useFeeStore = create((set, get) => ({
 
       // 2️⃣ Request ERP PDF
       const pdfRes = await axios.get(
-        `https://student.geu.ac.in/Web_StudentFinance/DownloadFile?ReceiptNo=${ReceiptNo}`,
+        `Web_StudentFinance/DownloadFile?ReceiptNo=${ReceiptNo}`,
         {
           responseType: "blob",
         }

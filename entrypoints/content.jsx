@@ -19,7 +19,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Notification from "@/components/Notification";
 
 export default defineContentScript({
-  matches: ["*://*.student.geu.ac.in/*"],
+  matches: ["*://*.student.geu.ac.in/*", "*://*.student.gehu.ac.in/*"],
   allFrames: true,
   main() {
     console.log("✅ CONTENT SCRIPT IS LOADING ON GEU!");
@@ -33,6 +33,7 @@ function waitForProfile() {
 }
 
 function injectComponents(img) {
+  const mainContainer = document.querySelector('.mainContainer');
   if (document.getElementById("geu-extension-btn")) return;
 
   // wrapper for positioning

@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { create } from "zustand";
 import qs from "qs";
+import { axiosInstance } from "@/lib/axiosInstance";
 
 export const useNoticeStore = create((set, get) => ({
   popupCirculars: [],
@@ -21,8 +22,8 @@ export const useNoticeStore = create((set, get) => ({
       errors: { ...get().errors, getCirculars: null },
     });
     try {
-      const res = await axios.post(
-        "https://student.geu.ac.in/Account/GetCircularIntention"
+      const res = await axiosInstance.post(
+        "Account/GetCircularIntention"
       );
       const circularData = JSON.parse(res.data.circular || "[]");
       set({
@@ -50,8 +51,8 @@ export const useNoticeStore = create((set, get) => ({
       errors: { ...get().errors, getAllCirculars: null },
     });
     try {
-      const res = await axios.post(
-        "https://student.geu.ac.in/Web_Teaching/GetCircularDetails"
+      const res = await axiosInstance.post(
+        "Web_Teaching/GetCircularDetails"
       );
       const circulars = JSON.parse(res.data.state || "[]");
       set({ allCirculars: circulars });
