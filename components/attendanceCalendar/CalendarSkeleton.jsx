@@ -12,7 +12,7 @@ const CalendarSkeleton = () => {
       </div>
 
       {/* Day Names */}
-      <div className="mb-2 grid grid-cols-7 gap-2">
+      <div className=" grid grid-cols-7 gap-2">
         {[...Array(7)].map((_, i) => (
           <Skeleton key={i} className="h-5 w-full" />
         ))}

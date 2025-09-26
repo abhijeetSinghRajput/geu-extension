@@ -17,6 +17,9 @@ import {
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import AttendanceTable from "./table/AttendanceTable";
+import ExamSummary from "./exams/ExamSummary";
+import TooltipWrapper from "./TooltipWrapper";
+import FeeSubmissions from "./fees/FeeSubmitions";
 
 // Dialog Components
 const HomeDialog = () => (
@@ -31,7 +34,7 @@ const HomeDialog = () => (
 const AttendanceDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle className="text-2xl sm:text-3xl font-bold mb-2">
+      <DialogTitle className="text-2xl">
         Attendance
       </DialogTitle>
     </DialogHeader>
@@ -42,36 +45,31 @@ const AttendanceDialog = () => (
 const ExamDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle>Exam</DialogTitle>
+      <DialogTitle className="text-2xl">
+        Exam Summary
+      </DialogTitle>
     </DialogHeader>
-    <div>Exam content here...</div>
-  </DialogContent>
-);
-
-const NotificationsDialog = () => (
-  <DialogContent className="max-w-max">
-    <DialogHeader>
-      <DialogTitle>Notifications</DialogTitle>
-    </DialogHeader>
-    <div>Notifications content here...</div>
+    <ExamSummary />
   </DialogContent>
 );
 
 const FeeDialog = () => (
-  <DialogContent className="max-w-max">
+  <DialogContent className="max-w-max max-h-[90vh]">
     <DialogHeader>
-      <DialogTitle>Fee</DialogTitle>
+      <DialogTitle className="sr-only text-2xl">
+        Fee
+      </DialogTitle>
     </DialogHeader>
-    <div>Fee content here...</div>
+    <FeeSubmissions />
   </DialogContent>
 );
 
 const data = [
+  // { title: "Home", icon: HomeIcon, link: "https://student.geu.ac.in/Account/Cyborg_StudentMenu" },
   { title: "Home", icon: HomeIcon, component: HomeDialog },
   { title: "Attendance", icon: Table, component: AttendanceDialog },
   { title: "Exam", icon: NotebookPen, component: ExamDialog },
   { title: "Fee", icon: GraduationCap, component: FeeDialog },
-  { title: "Notifications", icon: Bell, component: NotificationsDialog },
 ];
 
 const QuickAccessPanel = () => {
@@ -91,7 +89,7 @@ const QuickAccessPanel = () => {
         <DropdownMenuTrigger asChild>
           <Button
             size="lg"
-            className="fixed bottom-4 right-4 z-[1001] size-[48px] rounded-full text-[16px] bg-[#171717]"
+            className="z-[1001] size-[48px] rounded-full text-[16px]"
           >
             <Compass />
           </Button>
@@ -99,17 +97,23 @@ const QuickAccessPanel = () => {
         <DropdownMenuContent
           className="rounded-3xl min-w-max p-2"
           align="end"
-          side="top"
+          side="left"
         >
-          <DropdownMenuGroup className="flex flex-col gap-1">
+          <DropdownMenuGroup className="flex gap-1">
             {data.map((item) => (
-              <DropdownMenuItem
+              <TooltipWrapper
                 key={item.title}
-                className="cursor-pointer rounded-full size-[48px] flex items-center justify-center"
-                onClick={() => handleItemClick(item.title)}
+                content={item.title}
+                side={"top"}
+                className="rounded-full"
               >
-                <item.icon className="h-5 w-5" />
-              </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="cursor-pointer rounded-full size-[48px] flex items-center justify-center"
+                  onClick={() => handleItemClick(item.title)}
+                >
+                  <item.icon className="h-5 w-5" />
+                </DropdownMenuItem>
+              </TooltipWrapper>
             ))}
           </DropdownMenuGroup>
         </DropdownMenuContent>

@@ -16,7 +16,7 @@ const TableSkeleton = ({ className, heading }) => {
   return (
     <div
       className={cn(
-        "max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2 mt-6",
+        "max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2 ",
         className
       )}
     >

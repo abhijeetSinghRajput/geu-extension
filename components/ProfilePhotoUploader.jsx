@@ -125,15 +125,14 @@ const ProfilePhotoUploader = ({ img }) => {
         <Button
           type="button"
           size="icon"
-          variant="outline"
           className={cn("size-[32px] rounded-xl text-[16px]")}
         >
           <Camera className="size-[24px]" />
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="bg-card rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-[24px] font-bold">
+          <DialogTitle className="text-[18px] font-semibold text-primary p-0 m-0">
             Upload Profile Photo
           </DialogTitle>
         </DialogHeader>
@@ -179,7 +178,7 @@ const ProfilePhotoUploader = ({ img }) => {
                 type="button"
                 onClick={() => inputRef.current.click()}
                 disabled={compressing || uploadingAvatar}
-                className="h-[42px] px-6 rounded-xl text-[16px]"
+                className="h-[38px] px-6 rounded-xl text-[14px] font-medium"
               >
                 <ImageIcon /> Choose
               </Button>
@@ -187,7 +186,7 @@ const ProfilePhotoUploader = ({ img }) => {
               <Button
                 onClick={handleUpload}
                 disabled={!file || compressing || uploadingAvatar}
-                className="h-[42px] px-6 rounded-xl text-[16px] bg-[#171717]"
+                className="h-[38px] px-6 rounded-xl text-[14px] font-medium"
               >
                 {uploadingAvatar ? (
                   <>

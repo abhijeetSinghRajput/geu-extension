@@ -16,6 +16,7 @@ import {
 import QuickAccessPanel from "@/components/QuickAccessPanel";
 import ProfilePhotoUploader from "@/components/ProfilePhotoUploader";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Notification from "@/components/Notification";
 
 export default defineContentScript({
   matches: ["*://*.student.geu.ac.in/*"],
@@ -42,7 +43,7 @@ function injectComponents(img) {
   img.parentElement.insertBefore(wrapper, img);
   wrapper.appendChild(img);
 
-  // container for React dialog component
+  // container for ProfilePhotoUploader
   const dialogContainer = document.createElement("div");
   dialogContainer.id = "geu-extension-btn";
   dialogContainer.style.position = "absolute";
@@ -51,11 +52,11 @@ function injectComponents(img) {
   wrapper.appendChild(dialogContainer);
 
   // removing the navbar and unnecessary fields.
-  document.querySelector('.row.rowgap').style.display = "none";
-  document.querySelector("#header-navbar.div-only-mobile").style.display = "none";
+  document.querySelector(".row.rowgap").style.display = "none";
+  document.querySelector("#header-navbar.div-only-mobile").style.display =
+    "none";
 
-  // container for dock component
-  if (document.getElementById("geu-quick-access")) return;
+  // container for QuickAccessPanel
   const quickAccess = document.createElement("div");
   quickAccess.id = "geu-quick-access";
   document.body.appendChild(quickAccess);
@@ -70,10 +71,13 @@ function injectComponents(img) {
       <ProfilePhotoUploader img={img} />
     </TooltipProvider>
   );
-  
+
   quickAccessRoot.render(
     <TooltipProvider>
-      <QuickAccessPanel />
+      <div className="space-y-2 fixed bottom-4 right-4 grid grid-rows-2">
+        <Notification />
+        <QuickAccessPanel />
+      </div>
     </TooltipProvider>
   );
 }

@@ -11,7 +11,7 @@ export function ModeToggle({ className, ...props }) {
   return (
     <TooltipWrapper content={`switch to ${theme === "light" ? "Dark" : "Light"}`}>
       <Button
-        variant="ghost"
+        variant="default"
         onClick={toggleMode}
         className={cn("h-8", className)}
         {...props}

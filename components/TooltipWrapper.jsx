@@ -1,11 +1,12 @@
 import React from "react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-
-const TooltipWrapper = ({ children, content }) => {
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+const TooltipWrapper = ({ children, content, side, ...props }) => {
   return (
     <Tooltip>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
-      <TooltipContent>{content}</TooltipContent>
+      <TooltipContent side={side} {...props}>
+        {content}
+      </TooltipContent>
     </Tooltip>
   );
 };
