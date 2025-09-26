@@ -104,7 +104,7 @@ const DataTable = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-h-[60vh]"
+        className="w-full"
       >
         <Table className="border-collapse w-full">
           <TableHeader className="bg-muted sticky top-0 z-10">

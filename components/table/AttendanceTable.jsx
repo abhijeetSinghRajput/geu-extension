@@ -104,7 +104,7 @@ const AttendanceTable = () => {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2 ">
+    <div className="w-full">
       <Card className="overflow-hidden">
         <div className="sticky top-0 z-10 bg-muted">
           <div className="p-4 border-b flex justify-between gap-4">
@@ -185,9 +185,9 @@ const AttendanceTable = () => {
 
       {/* Dialog for showing subject details */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="">
+        <DialogContent className="text-primary max-w-[512px]">
           <DialogHeader>
-            <DialogTitle className="text-2xl">
+            <DialogTitle className="text-2xl p-0 m-0">
               {selectedSubject?.Subject || "Subject Details"}
             </DialogTitle>
           </DialogHeader>
@@ -197,11 +197,11 @@ const AttendanceTable = () => {
                 {/* Left side - Subject Code and Faculty */}
                 <div className="space-y-2 text-[14px]">
                   <div className="flex gap-2 items-center">
-                    <Clipboard className="text-muted-foreground size-[20px]" />
+                    <Clipboard className="text-muted-foreground size-[16px]" />
                     <p className="font-semibold m-0">{selectedSubject.SubjectCode}</p>
                   </div>
                   <div className="flex gap-2 items-center">
-                    <User2 className="text-muted-foreground size-[20px]" />
+                    <User2 className="text-muted-foreground size-[16px]" />
                     <p className="font-semibold m-0">{selectedSubject.EMPNAME}</p>
                   </div>
                 </div>

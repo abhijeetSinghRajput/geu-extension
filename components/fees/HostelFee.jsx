@@ -115,7 +115,7 @@ const HostelFee = ({ data, totals, columns, hasHostelFees = false }) => {
               />
             </div>
           ) : (
-            <div className="flex h-[60vh] flex-col items-center justify-center py-12">
+            <div className="flex flex-col items-center justify-center py-12">
               <HomeIcon className="w-12 h-12 text-muted-foreground mb-4" />
               <h3 className="text-[18px] font-semibold mb-1">No Hostel Fees Found</h3>
               <p className="text-muted-foreground text-[14px] text-center max-w-md">

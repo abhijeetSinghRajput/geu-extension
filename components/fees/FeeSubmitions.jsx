@@ -1,31 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { motion } from "framer-motion";
 import {
   HomeIcon,
   FileTextIcon,
   WalletIcon,
-  AlertCircleIcon,
-  CheckCircleIcon,
 } from "lucide-react";
 import { useFeeStore } from "@/stores/useFeeStore";
 
-import TableError from "@/components/table/TableError";
 import FeeSkeleton from "./FeeSkeleton";
 import CourseFee from "./CourseFee";
 import HostelFee from "./HostelFee";
 import FeeReceipts from "./FeeReceipts";
 import FeeError from "./FeeError";
-import { Progress } from "../ui/progress";
 
 const FeeSubmissions = () => {
   const {
@@ -43,7 +37,7 @@ const FeeSubmissions = () => {
   }, []);
 
   if (loadingFeeSubmissions) {
-    return <FeeSkeleton header={"Fee Submissios"} />;
+    return <FeeSkeleton header={"Fee Submissions"} />;
   }
 
   if (errors.getFeeSubmissions || !feeSubmissions) {
@@ -58,7 +52,6 @@ const FeeSubmissions = () => {
   // Calculate totals
   const calculateTotals = (data) => {
     if (!Array.isArray(data)) return;
-
     return data.reduce(
       (acc, item) => ({
         DueAmount: acc.DueAmount + item.DueAmount,
@@ -91,161 +84,122 @@ const FeeSubmissions = () => {
   ];
 
   // Prepare data with status field
-  const prepareTableData = (data) => {
-    return data.map((item) => ({
+  const prepareTableData = (data) =>
+    data.map((item) => ({
       ...item,
       status: item.BalanceAmount > 0 ? "Pending" : "Paid",
     }));
-  };
 
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-2"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold p-0 m-0">Fee Submissions</h2>
+    <div className="w-full space-y-4">
+      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 m-0">
+        Fee Submissions
+      </h2>
 
-        <Tabs defaultValue="course" className="w-full">
-          <TabsList className="grid h-[36px] grid-cols-3 w-max">
-            <TabsTrigger value="course" className="h-full">
-              <FileTextIcon className="size-4 mr-2" />
-              Course Fees
-            </TabsTrigger>
-            <TabsTrigger value="hostel" className="h-full">
-              <HomeIcon className="size-4 mr-2" />
-              Hostel Fees
-            </TabsTrigger>
-            <TabsTrigger value="receipts" className="h-full">
-              <WalletIcon className="size-4 mr-2" />
-              Receipts Fees
-            </TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="course" className="w-full">
+        <TabsList className="grid h-[36px] grid-cols-3 w-max">
+          <TabsTrigger value="course" className="h-full">
+            <FileTextIcon className="size-4 mr-2" />
+            Course Fees
+          </TabsTrigger>
+          <TabsTrigger value="hostel" className="h-full">
+            <HomeIcon className="size-4 mr-2" />
+            Hostel Fees
+          </TabsTrigger>
+          <TabsTrigger value="receipts" className="h-full">
+            <WalletIcon className="size-4 mr-2" />
+            Receipts Fees
+          </TabsTrigger>
+        </TabsList>
 
-          <TabsContent value="course">
-            <CourseFee
-              data={prepareTableData(feeSubmissions.headdata)}
-              totals={courseTotals}
-              columns={feeColumns}
-            />
-          </TabsContent>
+        <TabsContent value="course">
+          <CourseFee
+            data={prepareTableData(feeSubmissions.headdata)}
+            totals={courseTotals}
+            columns={feeColumns}
+          />
+        </TabsContent>
 
-          <TabsContent value="hostel">
-            <HostelFee
-              data={prepareTableData(feeSubmissions.headdata)}
-              totals={hostelTotals}
-              columns={feeColumns}
-              hasHostelFees={hasHostelFees}
-            />
-          </TabsContent>
+        <TabsContent value="hostel">
+          <HostelFee
+            data={prepareTableData(feeSubmissions.headdata)}
+            totals={hostelTotals}
+            columns={feeColumns}
+            hasHostelFees={hasHostelFees}
+          />
+        </TabsContent>
 
-          <TabsContent value="receipts">
-            <FeeReceipts data={feeReceipts} />
-          </TabsContent>
-        </Tabs>
+        <TabsContent value="receipts">
+          <FeeReceipts data={feeReceipts} />
+        </TabsContent>
+      </Tabs>
 
-        <motion.div
-          className=""
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Payment Summary</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex  gap-6">
-                <div className="flex-1">
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Total Course Fees:
-                      </span>
-                      <span>₹{courseTotals.DueAmount.toLocaleString()}</span>
-                    </div>
-                    {courseTotals.totalScholarship > 0 && (
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">
-                          Scholarship Applied:
-                        </span>
-                        <span className="text-green-600">
-                          -₹{courseTotals.totalScholarship.toLocaleString()}
-                        </span>
-                      </div>
-                    )}
-                    {courseTotals.SCAmount > 0 && (
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">
-                          Scholarship Applied:
-                        </span>
-                        <span className="text-green-600">
-                          -₹{courseTotals.SCAmount.toLocaleString()}
-                        </span>
-                      </div>
-                    )}
-                    <div className="border-t pt-2 mt-2">
-                      <div className="flex justify-between font-semibold">
-                        <span>Total Amount Paid:</span>
-                        <span>
-                          ₹{courseTotals.ReceivedAmount.toLocaleString()}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {hasHostelFees && (
-                  <div className="flex-1">
-                    <h4 className="font-semibold mb-3">Hostel Payment Details</h4>
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">
-                          Total Hostel Fees:
-                        </span>
-                        <span>₹{hostelTotals.DueAmount.toLocaleString()}</span>
-                      </div>
-                      {hostelTotals.SCAmount > 0 && (
-                        <div className="flex justify-between">
-                          <span className="text-muted-foreground">
-                            Security Adjusted:
-                          </span>
-                          <span className="text-green-600">
-                            -₹{hostelTotals.SCAmount.toLocaleString()}
-                          </span>
-                        </div>
-                      )}
-                      <div className="border-t pt-2 mt-2">
-                        <div className="flex justify-between font-semibold">
-                          <span>Total Amount Paid:</span>
-                          <span>
-                            ₹{hostelTotals.ReceivedAmount.toLocaleString()}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-[16px]">Payment Summary</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-6 text-[14px]">
+            <div className="flex-1 space-y-2">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Total Course Fees:</span>
+                <span>₹{courseTotals.DueAmount.toLocaleString()}</span>
               </div>
-              {hasHostelFees && (
-                <div className="border-t mt-4 pt-4">
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>Grand Total Paid:</span>
-                    <span>
-                      ₹
-                      {(
-                        courseTotals.ReceivedAmount +
-                        hostelTotals.ReceivedAmount
-                      ).toLocaleString()}
-                    </span>
-                  </div>
+              {courseTotals.SCAmount > 0 && (
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Scholarship Applied:</span>
+                  <span className="text-green-600">
+                    -₹{courseTotals.SCAmount.toLocaleString()}
+                  </span>
                 </div>
               )}
-            </CardContent>
-          </Card>
-        </motion.div>
-      </motion.div>
+              <div className="border-t pt-2 mt-2">
+                <div className="flex justify-between font-semibold">
+                  <span>Total Amount Paid:</span>
+                  <span>₹{courseTotals.ReceivedAmount.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            {hasHostelFees && (
+              <div className="flex-1">
+                <h4 className="font-semibold mb-3">Hostel Payment Details</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Total Hostel Fees:</span>
+                    <span>₹{hostelTotals.DueAmount.toLocaleString()}</span>
+                  </div>
+                  {hostelTotals.SCAmount > 0 && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">Security Adjusted:</span>
+                      <span className="text-green-600">
+                        -₹{hostelTotals.SCAmount.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
+                  <div className="border-t pt-2 mt-2">
+                    <div className="flex justify-between font-semibold">
+                      <span>Total Amount Paid:</span>
+                      <span>₹{hostelTotals.ReceivedAmount.toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {hasHostelFees && (
+            <div className="border-t mt-4 pt-4">
+              <div className="flex justify-between text-lg font-bold">
+                <span>Grand Total Paid:</span>
+                <span>₹{(
+                  courseTotals.ReceivedAmount + hostelTotals.ReceivedAmount
+                ).toLocaleString()}</span>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 };

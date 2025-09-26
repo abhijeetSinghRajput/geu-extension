@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
-import { Camera, ImageIcon, Loader2, Upload, X } from "lucide-react";
+import { Camera, Edit2, ImageIcon, Loader2, Upload, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
 import imageCompression from "browser-image-compression";
@@ -125,9 +125,9 @@ const ProfilePhotoUploader = ({ img }) => {
         <Button
           type="button"
           size="icon"
-          className={cn("size-[32px] rounded-xl text-[14px]")}
+          className={cn("rounded-xl text-[14px] bg-zinc-800 hover:bg-zinc-700 text-zinc-50")}
         >
-          <Camera className="size-[24px]" />
+          <Edit2 className="size-[24px]" />
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-card rounded-3xl">
@@ -139,7 +139,7 @@ const ProfilePhotoUploader = ({ img }) => {
         <Card className="border-none shadow-none">
           <CardContent className="flex flex-col items-center gap-4 p-4">
             <div className="relative">
-              <Avatar className="size-48">
+              <Avatar className="size-[120px]">
                 <AvatarImage src={preview || img.src} />
                 <AvatarFallback>
                   <img src="/avatar.svg" className="opacity-30" />
@@ -178,7 +178,7 @@ const ProfilePhotoUploader = ({ img }) => {
                 type="button"
                 onClick={() => inputRef.current.click()}
                 disabled={compressing || uploadingAvatar}
-                className="h-[38px] px-6 rounded-xl text-[14px] font-semibold"
+                className="rounded-xl text-[14px] font-semibold"
               >
                 <ImageIcon /> Choose
               </Button>
@@ -186,7 +186,7 @@ const ProfilePhotoUploader = ({ img }) => {
               <Button
                 onClick={handleUpload}
                 disabled={!file || compressing || uploadingAvatar}
-                className="h-[38px] px-6 rounded-xl text-[14px] font-semibold"
+                className="rounded-xl text-[14px] font-semibold"
               >
                 {uploadingAvatar ? (
                   <>

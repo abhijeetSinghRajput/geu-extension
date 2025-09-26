@@ -36,14 +36,14 @@ const ExamSummary = () => {
   }
 
   return (
-    <div className="w-full px-2 sm:px-4 md:px-6 py-2">
+    <div className="w-full">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex justify-between items-center gap-2 py-2"
       >
         {Array.isArray(examSummary) && examSummary[0]?.CGPA && (
-          <div className="font-semibold text-[14px]">CGPA {examSummary[0].CGPA}</div>
+          <div className="font-semibold text-[14px] text-primary">CGPA {examSummary[0].CGPA}</div>
         )}
       </motion.div>
       <Tabs defaultValue="results" className="w-full">

@@ -8,11 +8,37 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { FileTextIcon, HomeIcon, WalletIcon } from "lucide-react";
 
 const FeeSkeleton = ({ heading = "Fee Submissions" }) => {
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 space-y-6">
-      <TableSkeleton className={"max-w-full md:p-0 sm:p-0 p-0"} heading={heading} />
+    <div className="w-full">
+      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 m-0">
+        Fee Submissions
+      </h2>
+
+      <Tabs defaultValue="course" className="w-full">
+        <TabsList className="grid h-[36px] grid-cols-3 w-max">
+          <TabsTrigger value="course" className="h-full">
+            <FileTextIcon className="w-4 h-4 mr-2" />
+            Course Fees
+          </TabsTrigger>
+          <TabsTrigger value="hostel" className="h-full">
+            <HomeIcon className="w-4 h-4 mr-2" />
+            Hostel Fees
+          </TabsTrigger>
+          <TabsTrigger value="receipts" className="h-full">
+            <WalletIcon className="w-4 h-4 mr-2" />
+            Receipts Fees
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+
+      <TableSkeleton
+        className={"max-w-full md:p-0 sm:p-0 p-0"}
+        heading={heading}
+      />
       <FeeSummaryCards />
       <PaymentSummary />
     </div>

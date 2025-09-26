@@ -46,6 +46,7 @@ const CourseFee = ({ data, totals, columns }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.1 }}
+      className="space-y-[16px]"
     >
       <Card className="rounded-2xl overflow-hidden">
         <CardHeader className="border bg-muted">

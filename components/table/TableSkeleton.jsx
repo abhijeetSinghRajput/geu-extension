@@ -14,13 +14,7 @@ import { cn } from "@/lib/utils";
 
 const TableSkeleton = ({ className, heading }) => {
   return (
-    <div
-      className={cn(
-        "max-w-screen px-2 sm:px-4 md:px-6 py-2 ",
-        className
-      )}
-    >
-
+    <div className={cn("w-full", className)}>
       <Card className="overflow-hidden">
         <div className="sticky top-0 z-10 bg-muted">
           <div className="p-[16px] border-b flex justify-between gap-[16px]">
@@ -32,7 +26,7 @@ const TableSkeleton = ({ className, heading }) => {
               <Skeleton className={"h-[20px] w-38"} />
             </div>
 
-            <Skeleton className="ml-auto gap-1 bg-input h-8 w-[96px]"/>
+            <Skeleton className="ml-auto gap-1 bg-input h-8 w-[96px]" />
           </div>
         </div>
         <ScrollArea className="w-full whitespace-nowrap">

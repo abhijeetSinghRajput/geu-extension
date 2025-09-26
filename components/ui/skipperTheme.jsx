@@ -20,7 +20,7 @@ const Skiper26 = () => {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center">
       <div className="mx-auto max-w-lg space-y-5">
-        <h2 className="text-4xl font-semibold tracking-tight p-0 m-0">
+        <h2 className="text-primary text-4xl font-semibold tracking-tight p-0 m-0">
           07.09.2025 <br />
           Skiper ui is live now
         </h2>

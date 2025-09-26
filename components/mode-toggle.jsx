@@ -12,12 +12,12 @@ export function ModeToggle({ className, ...props }) {
     <TooltipWrapper content={`switch to ${theme === "light" ? "Dark" : "Light"}`}>
       <Button
         variant="default"
+        size="icon"
         onClick={toggleMode}
         className={cn("h-8", className)}
         {...props}
       >
         {theme === "light" ? <Sun /> : <Moon />}
-        <span className="capitalize">{theme}</span>
       </Button>
     </TooltipWrapper>
   );

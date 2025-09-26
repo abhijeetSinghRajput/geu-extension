@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import {
-  Bell,
+  CalendarCheck2,
   Compass,
   GraduationCap,
   HomeIcon,
+  IndianRupee,
   NotebookPen,
   Table,
 } from "lucide-react";
@@ -25,7 +26,9 @@ import FeeSubmissions from "./fees/FeeSubmitions";
 const HomeDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle>Home</DialogTitle>
+      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 m-0 text-primary">
+        Home
+      </DialogTitle>
     </DialogHeader>
     <div>Home content here...</div>
   </DialogContent>
@@ -34,7 +37,7 @@ const HomeDialog = () => (
 const AttendanceDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle className="text-2xl p-0 m-0">
+      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 m-0 text-primary">
         Attendance
       </DialogTitle>
     </DialogHeader>
@@ -45,7 +48,7 @@ const AttendanceDialog = () => (
 const ExamDialog = () => (
   <DialogContent className="max-w-[512px] w-full max-h-[70vh] h-full">
     <DialogHeader>
-      <DialogTitle className="text-2xl p-0 m-0">
+      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 m-0 text-primary">
         Exam Summary
       </DialogTitle>
     </DialogHeader>
@@ -54,11 +57,9 @@ const ExamDialog = () => (
 );
 
 const FeeDialog = () => (
-  <DialogContent className="max-w-screen-sm w-full h-[90vh]">
+  <DialogContent className="max-w-screen-sm w-full h-[70vh] overflow-auto">
     <DialogHeader>
-      <DialogTitle className="sr-only text-2xl">
-        Fee
-      </DialogTitle>
+      <DialogTitle className="sr-only text-2xl">Fee</DialogTitle>
     </DialogHeader>
     <FeeSubmissions />
   </DialogContent>
@@ -67,9 +68,9 @@ const FeeDialog = () => (
 const data = [
   // { title: "Home", icon: HomeIcon, link: "https://student.geu.ac.in/Account/Cyborg_StudentMenu" },
   { title: "Home", icon: HomeIcon, component: HomeDialog },
-  { title: "Attendance", icon: Table, component: AttendanceDialog },
+  { title: "Attendance", icon: CalendarCheck2, component: AttendanceDialog },
   { title: "Exam", icon: NotebookPen, component: ExamDialog },
-  { title: "Fee", icon: GraduationCap, component: FeeDialog },
+  { title: "Fee", icon: IndianRupee, component: FeeDialog },
 ];
 
 const QuickAccessPanel = () => {
@@ -87,10 +88,7 @@ const QuickAccessPanel = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            size="lg"
-            className="z-[1001] size-[48px] rounded-full text-[14px]"
-          >
+          <Button className="z-[1001] size-[42px] rounded-full text-[14px] bg-zinc-800 hover:bg-zinc-700 text-zinc-200">
             <Compass />
           </Button>
         </DropdownMenuTrigger>
@@ -108,7 +106,7 @@ const QuickAccessPanel = () => {
                 className="rounded-full"
               >
                 <DropdownMenuItem
-                  className="cursor-pointer rounded-full size-[48px] flex items-center justify-center"
+                  className="cursor-pointer rounded-2xl size-[38px] flex items-center justify-center"
                   onClick={() => handleItemClick(item.title)}
                 >
                   <item.icon className="h-5 w-5" />

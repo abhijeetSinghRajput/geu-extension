@@ -7,6 +7,7 @@ import {
   startOfWeek,
   endOfWeek,
   addWeeks,
+  isSameMonth,
 } from "date-fns";
 import { CheckCircle, X, Clock, RefreshCw } from "lucide-react";
 import CalendarSkeleton from "./CalendarSkeleton";
@@ -48,7 +49,9 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
   const fetchAttendance = async () => {
     if (!selectedSubject) return;
 
-    const visibleStart = startOfWeek(startOfMonth(currentMonth), {weekStartsOn: 0,});
+    const visibleStart = startOfWeek(startOfMonth(currentMonth), {
+      weekStartsOn: 0,
+    });
     const visibleEnd = addWeeks(visibleStart, 6);
 
     const payload = {
@@ -77,7 +80,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
 
   if (!attendanceData) {
     return (
-      <div className="flex flex-col gap-2 justify-center items-center h-64">
+      <div className="flex flex-col gap-[8px] justify-center items-center h-[256]">
         <p>No attendance data available</p>
         <Button size="sm" onClick={fetchAttendance}>
           <RefreshCw />
@@ -87,6 +90,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
     );
   }
 
+  const todayMonth = startOfMonth(new Date());
   const startMonth = data?.DateFrom
     ? startOfMonth(new Date(data.DateFrom))
     : undefined;
@@ -110,7 +114,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
     const dateNum = day.date.getDate();
 
     const baseClasses =
-      "p-0 aspect-square flex items-center justify-center h-9 w-full rounded-md overflow-hidden";
+      "p-0 aspect-square flex items-center justify-center h-[36px] w-full rounded-md overflow-hidden";
     const buttonProps = {
       onClick,
       onFocus,
@@ -127,7 +131,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
         <td className={cn(baseClasses)}>
           <Button
             variant="ghost"
-            className={cn("w-full", outside && "opacity-50")}
+            className={cn("px-[16px] py-[8px] w-full", outside && "opacity-50")}
             {...buttonProps}
           >
             {dateNum}
@@ -173,7 +177,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
         mode="single"
         selected={date}
         onSelect={setDate}
-        className="rounded-md border w-full bg-input/30"
+        className="rounded-md text-center border w-full bg-input/30"
         month={currentMonth}
         onMonthChange={(month) => {
           setCurrentMonth(startOfMonth(month));
@@ -184,6 +188,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
         defaultMonth={startMonth || new Date()}
         startMonth={startMonth}
         endMonth={endMonth}
+        nextMonthButtonDisabled={isSameMonth(currentMonth, todayMonth)}
       />
     </div>
   );

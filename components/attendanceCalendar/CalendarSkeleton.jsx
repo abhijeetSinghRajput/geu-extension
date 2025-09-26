@@ -6,22 +6,22 @@ const CalendarSkeleton = () => {
     <div className="bg-input/30 rounded-md border p-3 space-y-4">
       {/* Calendar Header */}
       <div className="flex justify-between items-center gap-2">
-        <Skeleton className="h-8 w-8 rounded-md" />
-        <Skeleton className="h-6 w-32" />
-        <Skeleton className="h-8 w-8 rounded-md" />
+        <Skeleton className="h-[32px] w-[32px] rounded-md" />
+        <Skeleton className="h-[24px] w-[128px]" />
+        <Skeleton className="h-[32px] w-[32px] rounded-md" />
       </div>
 
       {/* Day Names */}
       <div className=" grid grid-cols-7 gap-2">
         {[...Array(7)].map((_, i) => (
-          <Skeleton key={i} className="h-5 w-full" />
+          <Skeleton key={i} className="h-[19.2px] w-full" />
         ))}
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-2">
+      <div className="grid grid-cols-7 gap-[5px]">
         {[...Array(42)].map((_, i) => (
-          <Skeleton key={i} className="aspect-square h-9 w-full rounded-md" />
+          <Skeleton key={i} className="aspect-square h-[36px] w-full rounded-md" />
         ))}
       </div>
     </div>

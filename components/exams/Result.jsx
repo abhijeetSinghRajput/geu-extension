@@ -38,7 +38,7 @@ const Result = ({ examSummary }) => {
               </div>
               <TooltipWrapper content="Download Marksheet">
                 <Button
-                  className="size-8 p-0"
+                  className="size-[32px] p-0"
                   disabled={loadingMarksheet === exam.YearSem}
                   onClick={() => downloadMarksheet(exam.YearSem)}
                 >

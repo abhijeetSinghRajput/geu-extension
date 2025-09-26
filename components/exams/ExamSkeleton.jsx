@@ -6,7 +6,7 @@ import { Skeleton } from "../ui/skeleton";
 
 const ExamSkeleton = () => {
   return (
-    <div className="max-w-screen-lg mx-auto px-2 sm:px-4 md:px-6 py-2">
+    <div className="w-full">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

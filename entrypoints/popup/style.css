@@ -136,8 +136,8 @@ svg.lucide {
   height: auto;
 }
 [role="menuitem"] svg {
-  width: 20px !important;
-  height: 20px !important;
+  width: 16px !important;
+  height: 16px !important;
   stroke-width: 2px;
 }
 .rdp-week {

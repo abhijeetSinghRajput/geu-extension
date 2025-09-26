@@ -8,6 +8,7 @@ import {
   Activity,
   Component,
   HomeIcon,
+  IdCard as IdCardIcon,
   Mail,
   Package,
   ScrollText,
@@ -17,6 +18,14 @@ import QuickAccessPanel from "@/components/QuickAccessPanel";
 import ProfilePhotoUploader from "@/components/ProfilePhotoUploader";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Notification from "@/components/Notification";
+import IdCard from "@/components/IdCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export default defineContentScript({
   matches: ["*://*.student.geu.ac.in/*", "*://*.student.gehu.ac.in/*"],
@@ -33,7 +42,6 @@ function waitForProfile() {
 }
 
 function injectComponents(img) {
-  const mainContainer = document.querySelector('.mainContainer');
   if (document.getElementById("geu-extension-btn")) return;
 
   // wrapper for positioning
@@ -52,33 +60,88 @@ function injectComponents(img) {
   dialogContainer.style.right = "4px";
   wrapper.appendChild(dialogContainer);
 
-  // removing the navbar and unnecessary fields.
-  document.querySelector(".row.rowgap").style.display = "none";
-  document.querySelector("#header-navbar.div-only-mobile").style.display =
-    "none";
+  // remove navbar & extras
+  document.querySelector(".row.rowgap")?.style &&
+    (document.querySelector(".row.rowgap").style.display = "none");
+  document.querySelector("#header-navbar.div-only-mobile")?.style &&
+    (document.querySelector("#header-navbar.div-only-mobile").style.display =
+      "none");
 
   // container for QuickAccessPanel
   const quickAccess = document.createElement("div");
   quickAccess.id = "geu-quick-access";
   document.body.appendChild(quickAccess);
 
+  // container for IdCardDialog
+  const idCardContainer = document.createElement("div");
+  idCardContainer.id = "geu-id-card-dialog";
+  document.body.appendChild(idCardContainer);
+
   // React roots
   const dialogRoot = createRoot(dialogContainer);
   const quickAccessRoot = createRoot(quickAccess);
+  const idCardRoot = createRoot(idCardContainer);
 
-  // Wrap each component with TooltipProvider
+  // Mount Profile Photo Uploader
   dialogRoot.render(
-    <TooltipProvider>
-      <ProfilePhotoUploader img={img} />
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <ProfilePhotoUploader img={img} />
+      </TooltipProvider>
+    </ThemeProvider>
   );
 
+  // Mount Quick Access Panel
   quickAccessRoot.render(
-    <TooltipProvider>
-      <div className="space-y-2 fixed bottom-4 right-4 grid grid-rows-2">
-        <Notification />
-        <QuickAccessPanel />
-      </div>
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <div className="space-y-2 fixed bottom-4 right-4 grid grid-rows-2">
+          <Notification className={"bg-zinc-800 hover:bg-zinc-700 text-zinc-200"}/>
+          <QuickAccessPanel />
+        </div>
+      </TooltipProvider>
+    </ThemeProvider>
+  );
+
+  // Mount IdCard Dialog
+  idCardRoot.render(
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <IdCardDialog img={img} />
+      </TooltipProvider>
+    </ThemeProvider>
   );
 }
+
+// -------------------
+// IdCard Dialog Component
+// -------------------
+const IdCardDialog = ({ img }) => {
+  const [open, setOpen] = useState(false);
+
+  React.useEffect(() => {
+    if (!img) return;
+
+    const handleClick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(true);
+    };
+
+    img.style.cursor = "pointer";
+    img.addEventListener("click", handleClick);
+
+    return () => img.removeEventListener("click", handleClick);
+  }, [img]);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="max-w-max">
+        <DialogHeader className={"sr-only"}>
+          <DialogTitle>Your ID Card</DialogTitle>
+        </DialogHeader>
+        <IdCard />
+      </DialogContent>
+    </Dialog>
+  );
+};

@@ -175,13 +175,6 @@ const FeeReceipts = ({ data }) => {
                 data={processedData}
                 columns={columns}
                 visibleColumns={visibleColumns}
-                footerData={{
-                  CombineReceiptNo: "Total",
-                  TotalAmount: processedData.reduce(
-                    (sum, receipt) => sum + receipt.TotalAmount,
-                    0
-                  ),
-                }}
                 numericColumns={["TotalAmount"]}
               />
             </div>
