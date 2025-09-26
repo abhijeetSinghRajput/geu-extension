@@ -57,7 +57,7 @@ const CourseFee = ({ data, totals, columns }) => {
                 {data[0]?.YS || "Current Year"} Fee Breakdown
               </CardDescription>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <Badge
                 variant={totals.BalanceAmount > 0 ? "destructive" : "success"}
               >

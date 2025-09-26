@@ -83,7 +83,7 @@ const FeeReceipts = ({ data }) => {
         <TooltipWrapper content="Download Receipt">
           <Button
             variant="ghost"
-            className="size-8"
+            className="size-[32px]"
             disabled={downloadingReceipt === row.CombineReceiptNo}
             onClick={() =>
               downloadReceipt(
