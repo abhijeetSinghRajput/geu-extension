@@ -125,14 +125,14 @@ const ProfilePhotoUploader = ({ img }) => {
         <Button
           type="button"
           size="icon"
-          className={cn("rounded-xl text-[14px] bg-zinc-800 hover:bg-zinc-700 text-zinc-50")}
+          className={cn("rounded-xl size-[32px] text-[14px] bg-zinc-800 hover:bg-zinc-700 text-zinc-50")}
         >
           <Edit2 className="size-[24px]" />
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-card rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-[18px] font-semibold text-primary p-0 m-0">
+          <DialogTitle className="text-[18px] font-semibold text-primary p-0 my-[16px]">
             Upload Profile Photo
           </DialogTitle>
         </DialogHeader>

@@ -2,17 +2,8 @@
 
 import React, { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
-import {
-  HomeIcon,
-  FileTextIcon,
-  WalletIcon,
-} from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { HomeIcon, FileTextIcon, WalletIcon } from "lucide-react";
 import { useFeeStore } from "@/stores/useFeeStore";
 
 import FeeSkeleton from "./FeeSkeleton";
@@ -92,22 +83,19 @@ const FeeSubmissions = () => {
 
   return (
     <div className="w-full space-y-4">
-      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 m-0">
+      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 my-[16px]">
         Fee Submissions
       </h2>
 
       <Tabs defaultValue="course" className="w-full">
-        <TabsList className="grid h-[36px] grid-cols-3 w-max">
+        <TabsList className="flex h-[36px] w-max">
           <TabsTrigger value="course" className="h-full">
-            <FileTextIcon className="size-4 mr-2" />
             Course Fees
           </TabsTrigger>
           <TabsTrigger value="hostel" className="h-full">
-            <HomeIcon className="size-4 mr-2" />
             Hostel Fees
           </TabsTrigger>
           <TabsTrigger value="receipts" className="h-full">
-            <WalletIcon className="size-4 mr-2" />
             Receipts Fees
           </TabsTrigger>
         </TabsList>
@@ -142,12 +130,16 @@ const FeeSubmissions = () => {
           <div className="flex gap-6 text-[14px]">
             <div className="flex-1 space-y-2">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Total Course Fees:</span>
+                <span className="text-muted-foreground">
+                  Total Course Fees:
+                </span>
                 <span>₹{courseTotals.DueAmount.toLocaleString()}</span>
               </div>
               {courseTotals.SCAmount > 0 && (
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Scholarship Applied:</span>
+                  <span className="text-muted-foreground">
+                    Scholarship Applied:
+                  </span>
                   <span className="text-green-600">
                     -₹{courseTotals.SCAmount.toLocaleString()}
                   </span>
@@ -166,12 +158,16 @@ const FeeSubmissions = () => {
                 <h4 className="font-semibold mb-3">Hostel Payment Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Total Hostel Fees:</span>
+                    <span className="text-muted-foreground">
+                      Total Hostel Fees:
+                    </span>
                     <span>₹{hostelTotals.DueAmount.toLocaleString()}</span>
                   </div>
                   {hostelTotals.SCAmount > 0 && (
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Security Adjusted:</span>
+                      <span className="text-muted-foreground">
+                        Security Adjusted:
+                      </span>
                       <span className="text-green-600">
                         -₹{hostelTotals.SCAmount.toLocaleString()}
                       </span>
@@ -180,7 +176,9 @@ const FeeSubmissions = () => {
                   <div className="border-t pt-2 mt-2">
                     <div className="flex justify-between font-semibold">
                       <span>Total Amount Paid:</span>
-                      <span>₹{hostelTotals.ReceivedAmount.toLocaleString()}</span>
+                      <span>
+                        ₹{hostelTotals.ReceivedAmount.toLocaleString()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -192,9 +190,12 @@ const FeeSubmissions = () => {
             <div className="border-t mt-4 pt-4">
               <div className="flex justify-between text-lg font-bold">
                 <span>Grand Total Paid:</span>
-                <span>₹{(
-                  courseTotals.ReceivedAmount + hostelTotals.ReceivedAmount
-                ).toLocaleString()}</span>
+                <span>
+                  ₹
+                  {(
+                    courseTotals.ReceivedAmount + hostelTotals.ReceivedAmount
+                  ).toLocaleString()}
+                </span>
               </div>
             </div>
           )}

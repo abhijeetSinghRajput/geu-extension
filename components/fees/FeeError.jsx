@@ -6,7 +6,7 @@ import { FileTextIcon, HomeIcon, WalletIcon } from "lucide-react";
 const FeeError = (props) => {
   return (
     <div className="w-full">
-      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 m-0">Fee Submissions</h2>
+      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 my-[16px]">Fee Submissions</h2>
 
       <Tabs defaultValue="course" className="w-full">
         <TabsList className="grid h-[36px] grid-cols-3 w-max">

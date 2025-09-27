@@ -95,10 +95,7 @@ function injectComponents(img) {
   quickAccessRoot.render(
     <ThemeProvider defaultTheme="dark">
       <TooltipProvider>
-        <div className="space-y-2 fixed bottom-4 right-4 grid grid-rows-2">
-          <Notification className={"bg-zinc-800 hover:bg-zinc-700 text-zinc-200"}/>
           <QuickAccessPanel />
-        </div>
       </TooltipProvider>
     </ThemeProvider>
   );

@@ -21,12 +21,13 @@ import AttendanceTable from "./table/AttendanceTable";
 import ExamSummary from "./exams/ExamSummary";
 import TooltipWrapper from "./TooltipWrapper";
 import FeeSubmissions from "./fees/FeeSubmitions";
+import Notification from "./Notification";
 
 // Dialog Components
 const HomeDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 m-0 text-primary">
+      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 my-[16px] text-primary">
         Home
       </DialogTitle>
     </DialogHeader>
@@ -37,7 +38,7 @@ const HomeDialog = () => (
 const AttendanceDialog = () => (
   <DialogContent className="max-w-max">
     <DialogHeader>
-      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 m-0 text-primary">
+      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 my-[16px] text-primary">
         Attendance
       </DialogTitle>
     </DialogHeader>
@@ -48,7 +49,7 @@ const AttendanceDialog = () => (
 const ExamDialog = () => (
   <DialogContent className="max-w-[512px] w-full max-h-[70vh] h-full">
     <DialogHeader>
-      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 m-0 text-primary">
+      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 my-[16px] text-primary">
         Exam Summary
       </DialogTitle>
     </DialogHeader>
@@ -86,36 +87,37 @@ const QuickAccessPanel = () => {
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button className="z-[1001] size-[42px] rounded-full text-[14px] bg-zinc-800 hover:bg-zinc-700 text-zinc-200">
-            <Compass />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          className="rounded-3xl min-w-max p-2"
-          align="end"
-          side="left"
+      <div className="bg-background p-[8px] rounded-[20px] fixed bottom-4 right-4 flex items-center gap-[8px] text-muted-foreground">
+        <TooltipWrapper
+          content={"Notification"}
+          side={"top"}
+          className="rounded-full"
+          sideOffset={10}
         >
-          <DropdownMenuGroup className="flex gap-1">
-            {data.map((item) => (
-              <TooltipWrapper
-                key={item.title}
-                content={item.title}
-                side={"top"}
-                className="rounded-full"
-              >
-                <DropdownMenuItem
-                  className="cursor-pointer rounded-2xl size-[38px] flex items-center justify-center"
-                  onClick={() => handleItemClick(item.title)}
-                >
-                  <item.icon className="h-5 w-5" />
-                </DropdownMenuItem>
-              </TooltipWrapper>
-            ))}
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <Notification
+            side="top"
+            variant="ghost"
+            className={"rounded-[12px] size-[38px]"}
+          />
+        </TooltipWrapper>
+        {data.map((item) => (
+          <TooltipWrapper
+            key={item.title}
+            content={item.title}
+            side={"top"}
+            className="rounded-full"
+            sideOffset={10}
+          >
+            <Button
+              variant="ghost"
+              className="rounded-[12px] size-[38px]"
+              onClick={() => handleItemClick(item.title)}
+            >
+              <item.icon className="h-5 w-5" />
+            </Button>
+          </TooltipWrapper>
+        ))}
+      </div>
 
       {/* Dialogs */}
       {data.map((item) => (
