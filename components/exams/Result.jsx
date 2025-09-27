@@ -17,7 +17,7 @@ const Result = ({ examSummary }) => {
       transition={{ staggerChildren: 0.1 }}
       className="space-y-4"
     >
-      {examSummary.map((exam, index) => (
+      {Array.isArray(examSummary) && examSummary.map((exam, index) => (
         <motion.div
           key={index}
           initial={{ opacity: 0, y: 20 }}

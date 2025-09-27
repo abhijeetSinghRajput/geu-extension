@@ -44,7 +44,7 @@ const AttendanceTable = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    getAllAttendanceSubjects({ RegID: profile?.RegID });
+    if(!attendance) getAllAttendanceSubjects({ RegID: profile?.RegID });
   }, [profile?.RegID]);
 
   if (isLoadingSubjects) {

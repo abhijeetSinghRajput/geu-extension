@@ -4,8 +4,8 @@ import { toast } from "sonner";
 import { create } from "zustand";
 
 export const useExamStore = create((set, get) => ({
-  examSummary: [],
-  backlogs: [],
+  examSummary: null,
+  backlogs: null,
   loadingExamSummary: false,
   loadingBacklogs: false,
   loadingMarksheet: 0,
@@ -39,11 +39,75 @@ export const useExamStore = create((set, get) => ({
       // console.log(message, error);
       toast.error(message);
       set({
-        examSummary: [],
+        examSummary: null,
         errors: { ...get().errors, getExamSummary: message },
       });
     } finally {
       set({ loadingExamSummary: false });
+    }
+  },
+
+  getBacklogs: async () => {
+    set({
+      loadingBacklogs: true,
+      errors: { ...get().errors, getBacklogs: null },
+    });
+    try {
+      const res = await axiosInstance.post(
+        "Web_StudentAcademic/GetStudentBackPapers"
+      );
+      const backlogs = JSON.parse(res.data._backData || "[]");
+      set({ backlogs });
+    } catch (error) {
+      const message =
+        error?.response?.data.message || "Failed to fetch backlogs";
+      // console.log(message, error);
+      toast.error(message);
+      set({
+        errors: { ...get().errors, getBacklogs: message },
+        backlogs: null,
+      });
+    } finally {
+      set({ loadingBacklogs: false });
+    }
+  },
+
+  getAdmitCard: async (examType) => {
+    set({ loadingAdmitCard: examType });
+    try {
+      const examTypes = {
+        sessional: "1",
+        endTerm: "2",
+        midTerm: "3",
+      };
+
+      const payload = {
+        ExamType: 1, // 1:main 2:back
+        MarksType: examTypes[examType],
+        BackSetting: -1,
+      };
+
+      const res = await axiosInstance.post(
+        `Web_Exam/GetAdmitCardSlctStudentRecord`,
+        payload,
+        {
+          "Content-Type": "application/x-www-form-urlencoded",
+        }
+      );
+      const parsed = JSON.parse(res.data.state || "[]");
+      const admitCard =
+        Array.isArray(parsed) && parsed.length ? parsed[0] : null;
+      set({
+        admitCards: { ...get().admitCards, [examType]: admitCard },
+      });
+    } catch (error) {
+      const message =
+        error?.response?.data.message || "Failed to fetch backlogs";
+      // console.log(message, error);
+      toast.error(message);
+      set({ errors: { ...get().errors, getAdmitCard: message } });
+    } finally {
+      set({ loadingAdmitCard: false });
     }
   },
 
@@ -101,67 +165,6 @@ export const useExamStore = create((set, get) => ({
       });
     } finally {
       set({ loadingMarksheet: 0 });
-    }
-  },
-
-  getBacklogs: async () => {
-    set({
-      loadingBacklogs: true,
-      errors: { ...get().errors, getBacklogs: null },
-    });
-    try {
-      const res = await axiosInstance.post(
-        "Web_StudentAcademic/GetStudentBackPapers"
-      );
-      const backlogs = JSON.parse(res.data._backData || "[]");
-      set({ backlogs });
-    } catch (error) {
-      const message =
-        error?.response?.data.message || "Failed to fetch backlogs";
-      // console.log(message, error);
-      toast.error(message);
-      set({ errors: { ...get().errors, getBacklogs: message } });
-    } finally {
-      set({ loadingBacklogs: false });
-    }
-  },
-
-  getAdmitCard: async (examType) => {
-    set({ loadingAdmitCard: examType });
-    try {
-      const examTypes = {
-        sessional: "1",
-        endTerm: "2",
-        midTerm: "3",
-      };
-
-      const payload = {
-        ExamType: 1, // 1:main 2:back
-        MarksType: examTypes[examType],
-        BackSetting: -1,
-      };
-
-      const res = await axiosInstance.post(
-        `Web_Exam/GetAdmitCardSlctStudentRecord`,
-        payload,
-        {
-          "Content-Type": "application/x-www-form-urlencoded",
-        }
-      );
-      const parsed = JSON.parse(res.data.state || "[]");
-      const admitCard =
-        Array.isArray(parsed) && parsed.length ? parsed[0] : null;
-      set({
-        admitCards: { ...get().admitCards, [examType]: admitCard },
-      });
-    } catch (error) {
-      const message =
-        error?.response?.data.message || "Failed to fetch backlogs";
-      // console.log(message, error);
-      toast.error(message);
-      set({ errors: { ...get().errors, getAdmitCard: message } });
-    } finally {
-      set({ loadingAdmitCard: false });
     }
   },
 }));

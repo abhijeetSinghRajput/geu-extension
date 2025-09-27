@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
   CalendarCheck2,
-  Compass,
-  GraduationCap,
-  HomeIcon,
   IndianRupee,
   NotebookPen,
   Table,
@@ -23,17 +20,6 @@ import TooltipWrapper from "./TooltipWrapper";
 import FeeSubmissions from "./fees/FeeSubmitions";
 import Notification from "./Notification";
 
-// Dialog Components
-const HomeDialog = () => (
-  <DialogContent className="max-w-max">
-    <DialogHeader>
-      <DialogTitle className="text-left text-2xl sm:text-3xl font-bold p-0 my-[16px] text-primary">
-        Home
-      </DialogTitle>
-    </DialogHeader>
-    <div>Home content here...</div>
-  </DialogContent>
-);
 
 const AttendanceDialog = () => (
   <DialogContent className="max-w-max">
@@ -68,7 +54,6 @@ const FeeDialog = () => (
 
 const data = [
   // { title: "Home", icon: HomeIcon, link: "https://student.geu.ac.in/Account/Cyborg_StudentMenu" },
-  { title: "Home", icon: HomeIcon, component: HomeDialog },
   { title: "Attendance", icon: CalendarCheck2, component: AttendanceDialog },
   { title: "Exam", icon: NotebookPen, component: ExamDialog },
   { title: "Fee", icon: IndianRupee, component: FeeDialog },
@@ -87,7 +72,7 @@ const QuickAccessPanel = () => {
 
   return (
     <>
-      <div className="bg-background p-[8px] rounded-[20px] fixed bottom-4 right-4 flex items-center gap-[8px] text-muted-foreground">
+      <div className="bg-background p-[8px] rounded-[20px] fixed bottom-4 right-4 flex items-center gap-[4px] text-muted-foreground">
         <TooltipWrapper
           content={"Notification"}
           side={"top"}

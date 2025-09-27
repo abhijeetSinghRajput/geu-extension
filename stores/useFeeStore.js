@@ -45,7 +45,13 @@ export const useFeeStore = create((set, get) => ({
     } catch (error) {
       const message =
         error?.response?.data?.message || "Failed to load fee submissions";
-      set({ errors: { ...get().errors, getFeeSubmissions: message } });
+      set({
+        errors: {
+          ...get().errors,
+          getFeeSubmissions: message,
+          feeSubmissions: null,
+        },
+      });
       toast.error(message);
       console.error("Fee submissions error:", error);
     } finally {
@@ -68,7 +74,10 @@ export const useFeeStore = create((set, get) => ({
     } catch (error) {
       const message =
         error?.response?.data?.message || "Failed to load fee receipts";
-      set({ errors: { ...get().errors, getFeeReceipts: message } });
+      set({
+        errors: { ...get().errors, getFeeReceipts: message },
+        feeReceipts: null,
+      });
       toast.error(message);
       console.error("Fee receipts error:", error);
     } finally {

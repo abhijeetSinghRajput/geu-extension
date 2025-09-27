@@ -89,7 +89,7 @@ const Backlogs = ({ backlogs }) => {
       </CardHeader>
 
       <CardContent className="border p-0">
-        {backlogs && backlogs.length > 0 ? (
+        {Array.isArray(backlogs) && backlogs.length > 0 ? (
           <div className="space-y-6">
             <DataTable
               data={backlogs}

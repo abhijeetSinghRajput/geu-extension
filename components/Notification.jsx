@@ -8,7 +8,12 @@ import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { cn } from "../lib/utils";
 
-const Notification = ({ variant = "default", className, side = "bottom", align="center"}) => {
+const Notification = ({
+  variant = "default",
+  className,
+  side = "bottom",
+  align = "center",
+}) => {
   const { getAdmitCard, admitCards, loadingAdmitCard } = useExamStore();
   const { popupCirculars } = useNoticeStore();
 
@@ -59,11 +64,7 @@ const Notification = ({ variant = "default", className, side = "bottom", align="
         >
           <Bell className="h-5 w-5" />
           {hasNotifications && (
-            <Badge
-              className={
-                "rounded-full text-[12px] aspect-square absolute top-0 right-0 bg-red-500 hover:bg-red-500 text-zinc-50 px-2"
-              }
-            >
+            <Badge className="absolute top-0.5 right-0.5 h-4.5 px-1 text-[12px] rounded-full bg-red-500 hover:bg-red-500 text-zinc-50 border-2 border-background group-hover:border-accent z-10 h-[18px]">
               {notifications.length > 9 ? "9+" : notifications.length}
             </Badge>
           )}
@@ -109,7 +110,9 @@ const Notification = ({ variant = "default", className, side = "bottom", align="
                   <CardTitle className="text-[14px] font-semibold">
                     {n.title}
                   </CardTitle>
-                  {n.badge && <Badge className="capitalize aspect-square text-xs p-0.5">{n.badge}</Badge>}
+                  {n.badge && (
+                    <Badge className="capitalize text-[12px]">{n.badge}</Badge>
+                  )}
                 </CardHeader>
                 <CardContent className="p-[12px] pt-[4px] space-y-1">
                   {n.caption &&

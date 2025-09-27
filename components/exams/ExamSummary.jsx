@@ -18,8 +18,8 @@ const ExamSummary = () => {
   } = useExamStore();
 
   useEffect(() => {
-    getExamSummary();
-    getBacklogs();
+    if(!examSummary) getExamSummary();
+    if(!backlogs) getBacklogs();
   }, []);
 
   if (loadingExamSummary) {

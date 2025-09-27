@@ -13,7 +13,7 @@ import { FileTextIcon, HomeIcon, WalletIcon } from "lucide-react";
 
 const FeeSkeleton = ({ heading = "Fee Submissions" }) => {
   return (
-    <div className="w-full">
+    <div className="w-full space-y-4">
       <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 my-[16px]">
         Fee Submissions
       </h2>

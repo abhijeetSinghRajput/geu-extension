@@ -11,7 +11,7 @@ const IdCard = () => {
   const campus = window.location.hostname.includes("gehu") ? "hill" : "deemed";
 
   useEffect(() => {
-    getIdCard();
+    if(!idCard) getIdCard();
   }, []);
 
   if (loadingIdCard || 0) {

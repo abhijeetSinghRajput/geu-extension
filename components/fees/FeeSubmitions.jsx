@@ -23,8 +23,8 @@ const FeeSubmissions = () => {
   } = useFeeStore();
 
   useEffect(() => {
-    getFeeSubmissions();
-    getFeeReceipts();
+    if(!feeSubmissions) getFeeSubmissions();
+    if(!feeReceipts) getFeeReceipts();
   }, []);
 
   if (loadingFeeSubmissions) {

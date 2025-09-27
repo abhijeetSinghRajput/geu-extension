@@ -39,6 +39,7 @@ export const useStudentStore = create((set, get) => ({
 
       set({ idCard });
     } catch (error) {
+      set({idCard: null})
       console.log(error);
     } finally {
       set({ loadingIdCard: false });
