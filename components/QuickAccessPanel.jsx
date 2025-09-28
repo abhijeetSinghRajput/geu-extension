@@ -4,7 +4,7 @@ import {
   CalendarCheck2,
   IndianRupee,
   NotebookPen,
-  Sparkle,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import TooltipWrapper from "./TooltipWrapper";
@@ -19,7 +19,7 @@ const data = [
   { title: "Attendance", icon: CalendarCheck2, component: AttendanceTable },
   { title: "Exam", icon: NotebookPen, component: ExamSummary },
   { title: "Fee", icon: IndianRupee, component: FeeSubmissions },
-  { title: "Enhance", icon: Sparkle, onClick: null }, // will toggle homepage
+  { title: "Enhance", icon: Sparkles, onClick: null }, // will toggle homepage
 ];
 
 // localStorage key for persistency
