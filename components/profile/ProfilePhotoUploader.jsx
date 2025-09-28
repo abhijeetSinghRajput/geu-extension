@@ -1,32 +1,32 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
-import { Button } from "./ui/button";
-import { Camera, Edit2, ImageIcon, Loader2, Upload, X } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { cn } from "@/lib/utils";
+} from "../ui/dialog";
+import { Card, CardContent } from "../ui/card";
+import {
+  Upload,
+  Image as ImageIcon,
+  X,
+  Camera,
+  Loader2,
+} from "lucide-react";
 import imageCompression from "browser-image-compression";
-import { Card, CardContent } from "./ui/card";
-import { axiosInstance } from "@/lib/axiosInstance";
-import { useStudentStore } from "@/stores/useStudentStore";
-import avatar from "../public/avatar.svg";
+import { useStudentStore } from "../../stores/useStudentStore";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import avatar from "../../public/avatar.svg";
 
-const ProfilePhotoUploader = ({ img }) => {
+const ProfilePhotoUploader = ({className}) => {
+  const { idCard, updateAvatar, uploadingAvatar } = useStudentStore();
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
   const [compressing, setCompressing] = useState(false);
-  const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [fileSize, setFileSize] = useState(null);
   const inputRef = useRef(null);
-  const { profile, getStudentProfile, loading } = useStudentStore();
-  useEffect(() => {
-    getStudentProfile();
-  }, [getStudentProfile]);
 
   const compressImage = async (imageFile) => {
     const options = {
@@ -61,7 +61,7 @@ const ProfilePhotoUploader = ({ img }) => {
 
     const validTypes = ["image/jpeg", "image/jpg", "image/png"];
     if (!validTypes.includes(selectedFile.type)) {
-      console.log("Only JPG, JPEG, PNG formats are supported.");
+      alert("Only JPG, JPEG, PNG formats are supported.");
       return;
     }
 
@@ -71,46 +71,15 @@ const ProfilePhotoUploader = ({ img }) => {
       setFileSize((compressedFile.size / 1024).toFixed(2)); // in KB
       setPreview(URL.createObjectURL(compressedFile));
     } catch (error) {
-      console.log("Error processing image: " + error.message);
+      alert("Error processing image: " + error.message);
     }
   };
 
   const handleUpload = async () => {
     if (!file) return;
-    setUploadingAvatar(true);
-
-    // Determine content type based on file
-    const contentType = file.type || "image/jpeg"; // default to jpeg if missing
-
-    // Append the file to FormData
-    const formData = new FormData();
-    formData.append("helpSectionImages", file, "avatar.jpg");
-
-    try {
-      const res = await axiosInstance.post(
-        "Web_StudentAcademic/UploadStudentImg_ostulgn",
-        formData,
-        {
-          withCredentials: true, // send ERP cookies
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      if (res.status === 200) {
-        if (img) img.setAttribute("src", preview);
-        handleRemove();
-      } else {
-        console.log("Upload failed!");
-      }
-    } catch (err) {
-      console.error(err);
-      console.log("Upload error: " + err.message);
-    } finally {
-      setUploadingAvatar(false);
-    }
+    updateAvatar(file);
+    // Reset state after upload
+    // handleRemove();
   };
 
   const handleRemove = () => {
@@ -122,26 +91,22 @@ const ProfilePhotoUploader = ({ img }) => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          type="button"
-          size="icon"
-          className={cn("rounded-xl size-[32px] text-[14px] bg-zinc-800 hover:bg-zinc-700 text-zinc-50")}
-        >
-          <Edit2 className="size-[24px]" />
+      <DialogTrigger className={className} asChild>
+        <Button size="icon" variant="secondary">
+          <Camera />
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-card rounded-3xl">
+
+      <DialogContent className="sm:max-w-md bg-card">
         <DialogHeader>
-          <DialogTitle className="text-[18px] font-semibold text-primary p-0 my-[16px]">
-            Upload Profile Photo
-          </DialogTitle>
+          <DialogTitle>Upload Profile Photo</DialogTitle>
         </DialogHeader>
+
         <Card className="border-none shadow-none">
           <CardContent className="flex flex-col items-center gap-4 p-4">
             <div className="relative">
-              <Avatar className="size-[120px]">
-                <AvatarImage src={preview || img.src} />
+              <Avatar className="size-[128px]">
+                <AvatarImage src={preview || idCard?.Photo} />
                 <AvatarFallback>
                   <img src={avatar} className="opacity-30" />
                 </AvatarFallback>
@@ -159,8 +124,8 @@ const ProfilePhotoUploader = ({ img }) => {
             </div>
 
             {fileSize && (
-              <p className="text-[14px] text-muted-foreground">
-                Compress to: <span className="font-semibold">{fileSize} KB</span>
+              <p className="text-sm text-muted-foreground">
+                Compress to: <span className="font-medium">{fileSize} KB</span>
               </p>
             )}
 
@@ -179,7 +144,6 @@ const ProfilePhotoUploader = ({ img }) => {
                 type="button"
                 onClick={() => inputRef.current.click()}
                 disabled={compressing || uploadingAvatar}
-                className="rounded-xl text-[14px] font-semibold"
               >
                 <ImageIcon /> Choose
               </Button>
@@ -187,11 +151,11 @@ const ProfilePhotoUploader = ({ img }) => {
               <Button
                 onClick={handleUpload}
                 disabled={!file || compressing || uploadingAvatar}
-                className="rounded-xl text-[14px] font-semibold"
+                className="flex items-center gap-2"
               >
                 {uploadingAvatar ? (
                   <>
-                    <Loader2 className="animate-spin" />
+                    <Loader2 className="animate-spin"/>
                     Uploading...
                   </>
                 ) : (

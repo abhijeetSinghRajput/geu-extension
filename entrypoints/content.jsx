@@ -18,7 +18,6 @@ import QuickAccessPanel from "@/components/QuickAccessPanel";
 import ProfilePhotoUploader from "@/components/ProfilePhotoUploader";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Notification from "@/components/Notification";
-import IdCard from "@/components/IdCard";
 import {
   Dialog,
   DialogContent,
@@ -26,6 +25,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ThemeProvider } from "@/components/theme-provider";
+import IdCard from "@/components/profile/IdCard";
 
 export default defineContentScript({
   matches: ["*://*.student.geu.ac.in/*", "*://*.student.gehu.ac.in/*"],

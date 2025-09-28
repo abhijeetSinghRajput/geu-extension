@@ -13,7 +13,14 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AlertCircleIcon, CheckCircleIcon, ChevronDown, FileTextIcon, InfoIcon, WalletIcon } from "lucide-react";
+import {
+  AlertCircleIcon,
+  CheckCircleIcon,
+  ChevronDown,
+  FileTextIcon,
+  InfoIcon,
+  WalletIcon,
+} from "lucide-react";
 import React, { useState } from "react";
 import DataTable from "../table/Table";
 import FeeError from "./FeeError";
@@ -52,41 +59,44 @@ const CourseFee = ({ data, totals, columns }) => {
         <CardHeader className="border bg-muted">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="text-[14px]">Course Fee Details</CardTitle>
+              <div className="flex items-center gap-[8px">
+                <CardTitle className="text-[14px]">
+                  Course Fee Details
+                </CardTitle>
+                <Badge
+                  variant={totals.BalanceAmount > 0 ? "destructive" : "success"}
+                >
+                  {totals.BalanceAmount > 0 ? "Pending" : "Paid"}
+                </Badge>
+              </div>
               <CardDescription>
                 {data[0]?.YS || "Current Year"} Fee Breakdown
               </CardDescription>
             </div>
-            <div className="flex items-center gap-2">
-              <Badge
-                variant={totals.BalanceAmount > 0 ? "destructive" : "success"}
-              >
-                {totals.BalanceAmount > 0 ? "Pending" : "Paid"}
-              </Badge>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="ml-auto gap-1 bg-input text-[14px]"
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="ml-auto gap-1 bg-input text-[14px]"
+                >
+                  <span>Columns</span>
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[150px]">
+                {columns.map((column) => (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={visibleColumns[column.id]}
+                    onCheckedChange={() => toggleColumnVisibility(column.id)}
                   >
-                    <span>Columns</span>
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-[150px]">
-                  {columns.map((column) => (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={visibleColumns[column.id]}
-                      onCheckedChange={() => toggleColumnVisibility(column.id)}
-                    >
-                      {column.header}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+                    {column.header}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </CardHeader>
 
@@ -122,7 +132,9 @@ const CourseFee = ({ data, totals, columns }) => {
           ) : (
             <div className="flex h-[60vh] flex-col items-center justify-center py-12">
               <InfoIcon className="w-12 h-12 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-1">No Course Fees Found</h3>
+              <h3 className="text-lg font-semibold mb-1">
+                No Course Fees Found
+              </h3>
               <p className="text-muted-foreground text-center max-w-md">
                 There are no course fees associated with your account.
               </p>
@@ -134,6 +146,5 @@ const CourseFee = ({ data, totals, columns }) => {
     </motion.div>
   );
 };
-
 
 export default CourseFee;

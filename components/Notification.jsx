@@ -60,11 +60,11 @@ const Notification = ({
         <Button
           variant={variant}
           size="icon"
-          className={cn("group relative size-[42px] rounded-full", className)}
+          className={cn("group relative", className)}
         >
           <Bell className="h-5 w-5" />
           {hasNotifications && (
-            <Badge className="absolute top-0.5 right-0.5 h-4.5 px-1 text-[12px] rounded-full bg-red-500 hover:bg-red-500 text-zinc-50 border-2 border-background group-hover:border-accent z-10 h-[18px]">
+            <Badge className="absolute top-0.5 right-0.5 px-1.5 text-[12px] rounded-full bg-red-500 hover:bg-red-500 text-zinc-50 border-2 border-background group-hover:border-accent z-10 h-[18px]">
               {notifications.length > 9 ? "9+" : notifications.length}
             </Badge>
           )}

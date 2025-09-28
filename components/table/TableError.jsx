@@ -31,14 +31,14 @@ const TableError = ({
       <Card className="overflow-hidden relative">
         <div className="absolute z-20 inset-0 bg-background/70 flex items-center justify-center p-4">
           <div className="text-center space-y-4">
-            <AlertTriangle className="h-12 w-12 mx-auto text-destructive" />
-            <h3 className="text-2xl font-semibold text-destructive">{heading}</h3>
+            <AlertTriangle className="h-[48px] w-[48px] mx-auto text-destructive" />
+            <h3 className="text-[24px] font-semibold text-destructive">{heading}</h3>
             <p className="text-destructive max-w-md">
               {description ||
                 "We couldn't load the attendance records. Please check your connection and try again."}
             </p>
             {onReload && (
-              <Button onClick={onReload} className="mt-4 gap-2">
+              <Button onClick={onReload} className="mt-[16px] gap-[8px]">
                 <RefreshCw />
                 Retry
               </Button>
@@ -54,33 +54,31 @@ const TableError = ({
         >
           <div className="p-4 border-b flex justify-between gap-4">
             <div className="space-y-1">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-[12px]">
                 <Skeleton
                   className={cn(
-                    "animate-none text-xl font-semibold h-7 w-28",
+                    "animate-none text-[20px] font-semibold h-[28px] w-[112px]",
                     variant === "destructive" && "bg-destructive/30"
                   )}
                 />
                 <Skeleton
                   className={cn(
-                    "animate-none h-7 w-16",
+                    "animate-none h-[28px] w-[64px]",
                     variant === "destructive" && "bg-destructive/30"
                   )}
                 />
               </div>
               <Skeleton
                 className={cn(
-                  "animate-none h-5 w-38",
+                  "animate-none h-[20px] w-[144px]",
                   variant === "destructive" && "bg-destructive/30"
                 )}
               />
             </div>
 
             <Skeleton
-              variant="outline"
-              size="sm"
               className={cn(
-                "animate-none ml-auto gap-1 bg-input h-8 w-24",
+                "animate-none ml-auto gap-1 bg-input h-[32px] w-[96px]",
                 variant === "destructive" && "bg-destructive/30"
               )}
             />
@@ -90,13 +88,13 @@ const TableError = ({
         <Table>
           <TableBody>
             {[...Array(7)].map((_, idx) => (
-              <TableRow key={idx} className={idx === 0 && "bg-muted/30 h-14"}>
+              <TableRow key={idx} className={idx === 0 && "bg-muted/30 h-[56px]"}>
                 <TableCell>
                   <Skeleton
                     className={cn(
                       variant === "destructive" &&
                         "animate-none bg-destructive/30",
-                      "h-7 min-w-24"
+                      "h-[28px] min-w-[96px]"
                     )}
                   />
                 </TableCell>
@@ -105,7 +103,7 @@ const TableError = ({
                     className={cn(
                       variant === "destructive" &&
                         "animate-none bg-destructive/30",
-                      "h-7 min-w-24"
+                      "h-[28px] min-w-[96px]"
                     )}
                   />
                 </TableCell>
@@ -114,7 +112,7 @@ const TableError = ({
                     className={cn(
                       variant === "destructive" &&
                         "animate-none bg-destructive/30",
-                      "h-7 min-w-24"
+                      "h-[28px] min-w-[96px]"
                     )}
                   />
                 </TableCell>
@@ -123,7 +121,7 @@ const TableError = ({
                     className={cn(
                       variant === "destructive" &&
                         "animate-none bg-destructive/30",
-                      "h-7 min-w-24"
+                      "h-[28px] min-w-[96px]"
                     )}
                   />
                 </TableCell>

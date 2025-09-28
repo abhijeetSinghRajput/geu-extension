@@ -14,27 +14,50 @@ export const useAttendanceStore = create((set, get) => ({
     getAttendanceBySubject: null,
   },
 
-  getAllAttendanceSubjects: async ({ RegID }) => {
-    if (!RegID) return;
+  getAllAttendanceSubjects: async () => {
+    const { student } = useStudentStore.getState(); // ✅ use student
+    const RegID = student?.RegID;
+
+    if (!RegID) {
+      console.log("❌ RegID not provided");
+      return;
+    }
+
     set({
       isLoadingSubjects: true,
       errors: { ...get().errors, getAllAttendanceSubjects: null },
     });
 
     try {
-      console.log("fetching attendance...");
+      console.log("📡 Fetching attendance...");
       const res = await axiosInstance.post(
         `Web_StudentAcademic/GetSubjectDetailStudentAcademicFromLive`,
         { RegID }
       );
-      const state = JSON.parse(res.data.state || "[]");
-      const data = JSON.parse(res.data.data || "[]")[0] || {};
+
+      const state = (() => {
+        try {
+          return JSON.parse(res.data.state || "[]");
+        } catch {
+          return [];
+        }
+      })();
+
+      const data = (() => {
+        try {
+          return JSON.parse(res.data.data || "[]")[0] || {};
+        } catch {
+          return {};
+        }
+      })();
+
       set({ attendance: { state, data } });
     } catch (error) {
       const message =
         error?.response?.data?.message ||
         "Something went wrong while fetching attendance.";
-      console.log(message);
+      console.error("❌", message, error);
+
       set({
         attendance: null,
         errors: { ...get().errors, getAllAttendanceSubjects: message },

@@ -30,7 +30,6 @@ import { useStudentStore } from "@/stores/useStudentStore";
 const AttendanceTable = () => {
   const { attendance, isLoadingSubjects, getAllAttendanceSubjects, errors } =
     useAttendanceStore();
-  const { profile } = useStudentStore();
   const [visibleColumns, setVisibleColumns] = useState({
     Subject: true,
     SubjectCode: false,
@@ -44,8 +43,8 @@ const AttendanceTable = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
-    if(!attendance) getAllAttendanceSubjects({ RegID: profile?.RegID });
-  }, [profile?.RegID]);
+    if (!attendance) getAllAttendanceSubjects();
+  }, []);
 
   if (isLoadingSubjects) {
     return <TableSkeleton heading={"Attendance"} />;
@@ -55,9 +54,7 @@ const AttendanceTable = () => {
     return (
       <TableError
         description={errors.getAllAttendanceSubjects}
-        onReload={() => {
-          getAllAttendanceSubjects({ RegID: profile?.RegID });
-        }}
+        onReload={getAllAttendanceSubjects}
       />
     );
   }
@@ -129,9 +126,7 @@ const AttendanceTable = () => {
                     size="icon"
                     variant="outline"
                     className="bg-input size-8"
-                    onClick={() => {
-                      getAllAttendanceSubjects({ RegID: profile?.RegID });
-                    }}
+                    onClick={getAllAttendanceSubjects}
                   >
                     <RotateCwIcon />
                   </Button>
@@ -198,11 +193,15 @@ const AttendanceTable = () => {
                 <div className="space-y-2 text-[14px]">
                   <div className="flex gap-2 items-center">
                     <Clipboard className="text-muted-foreground size-[16px]" />
-                    <p className="font-semibold m-0">{selectedSubject.SubjectCode}</p>
+                    <p className="font-semibold m-0">
+                      {selectedSubject.SubjectCode}
+                    </p>
                   </div>
                   <div className="flex gap-2 items-center">
                     <User2 className="text-muted-foreground size-[16px]" />
-                    <p className="font-semibold m-0">{selectedSubject.EMPNAME}</p>
+                    <p className="font-semibold m-0">
+                      {selectedSubject.EMPNAME}
+                    </p>
                   </div>
                 </div>
 

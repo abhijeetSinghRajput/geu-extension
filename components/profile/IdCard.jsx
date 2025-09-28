@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { id } from "date-fns/locale";
 import { useStudentStore } from "@/stores/useStudentStore";
 import { cn } from "@/lib/utils";
-import { Skeleton } from "./ui/skeleton";
-import geuBanner from "../public/geu-banner.jpeg";
-import gehuBanner from "../public/gehu-banner.jpeg";
+import geuBanner from "../../public/geu-banner.jpeg";
+import gehuBanner from "../../public/gehu-banner.jpeg";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const IdCard = () => {
   const { idCard, loadingIdCard, getIdCard } = useStudentStore();
