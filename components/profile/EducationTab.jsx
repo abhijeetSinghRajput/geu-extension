@@ -3,14 +3,8 @@
 import { motion } from "framer-motion";
 import { Progress } from "../ui/progress";
 import { useStudentStore } from "../../stores/useStudentStore";
-
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import { LabelList, PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
 
 // Chart config for academic performance
 const chartConfig = {
@@ -119,7 +113,9 @@ const EducationTab = ({ tabContentVariants, textVariants }) => {
             </div>
 
             {/* Radial Chart (only course names) */}
-            <AcademicRadialChart chartData={chartData} />
+            <div>
+              <AcademicRadialChart chartData={chartData} />
+            </div>
           </div>
         </motion.div>
       </div>

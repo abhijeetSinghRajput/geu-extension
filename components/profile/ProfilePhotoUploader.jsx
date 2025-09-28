@@ -8,19 +8,13 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Card, CardContent } from "../ui/card";
-import {
-  Upload,
-  Image as ImageIcon,
-  X,
-  Camera,
-  Loader2,
-} from "lucide-react";
+import { Upload, Image as ImageIcon, X, Camera, Loader2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { useStudentStore } from "../../stores/useStudentStore";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import avatar from "../../public/avatar.svg";
 
-const ProfilePhotoUploader = ({className}) => {
+const ProfilePhotoUploader = ({ className }) => {
   const { idCard, updateAvatar, uploadingAvatar } = useStudentStore();
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
@@ -99,7 +93,9 @@ const ProfilePhotoUploader = ({className}) => {
 
       <DialogContent className="sm:max-w-md bg-card">
         <DialogHeader>
-          <DialogTitle>Upload Profile Photo</DialogTitle>
+          <DialogTitle className="text-[18px] font-semibold text-primary p-0 my-[16px]">
+            Upload Profile Photo
+          </DialogTitle>
         </DialogHeader>
 
         <Card className="border-none shadow-none">
@@ -155,7 +151,7 @@ const ProfilePhotoUploader = ({className}) => {
               >
                 {uploadingAvatar ? (
                   <>
-                    <Loader2 className="animate-spin"/>
+                    <Loader2 className="animate-spin" />
                     Uploading...
                   </>
                 ) : (
