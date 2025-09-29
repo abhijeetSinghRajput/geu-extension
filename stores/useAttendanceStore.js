@@ -68,11 +68,12 @@ export const useAttendanceStore = create((set, get) => ({
   },
 
   getAttendanceBySubject: async (SubjectID, data = {}) => {
-    const { profile } = useStudentStore.getState();
+    const { student } = useStudentStore.getState(); 
+    const RegID = student?.RegID;
 
-    if (!profile?.RegID) {
-      console.log("Student registration ID not found");
-      return null;
+    if (!RegID) {
+      console.log("❌ RegID not provided");
+      return;
     }
 
     set({
@@ -82,7 +83,7 @@ export const useAttendanceStore = create((set, get) => ({
 
     try {
       // Create cache key
-      const cacheKey = `${profile.RegID}-${SubjectID}-${data.DateFrom || ""}-${
+      const cacheKey = `${RegID}-${SubjectID}-${data.DateFrom || ""}-${
         data.DateTo || ""
       }`;
 
@@ -95,7 +96,7 @@ export const useAttendanceStore = create((set, get) => ({
       // Prepare payload
       const payload = {
         SubjectID,
-        RegID: profile.RegID,
+        RegID,
         PeriodAssignID: data.PeriodAssignID || 0,
         TTID: data.TTID || 0,
         LectureTypeID: data.LectureTypeID || 0,

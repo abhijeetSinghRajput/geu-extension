@@ -2,7 +2,7 @@
   "name": "geu-quickaccess",
   "description": "Instant access to attendance, results, fees, and notifications in GEU ERP.",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
