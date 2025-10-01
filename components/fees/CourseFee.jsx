@@ -59,7 +59,7 @@ const CourseFee = ({ data, totals, columns }) => {
         <CardHeader className="border bg-muted">
           <div className="flex justify-between items-start">
             <div>
-              <div className="flex items-center gap-[8px">
+              <div className="flex items-center gap-[8px]">
                 <CardTitle className="text-[14px]">
                   Course Fee Details
                 </CardTitle>
@@ -102,7 +102,7 @@ const CourseFee = ({ data, totals, columns }) => {
 
         <CardContent className="border p-0">
           {data.length > 0 ? (
-            <div className="space-y-6">
+            <div className="space-y-[24px]">
               <DataTable
                 data={data}
                 columns={columns}

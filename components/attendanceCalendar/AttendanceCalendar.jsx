@@ -172,7 +172,7 @@ const AttendanceCalendar = ({ selectedSubject, data }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-[16px]">
       <Calendar
         mode="single"
         selected={date}

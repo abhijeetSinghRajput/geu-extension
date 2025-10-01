@@ -22,6 +22,9 @@ export const useStudentStore = create((set, get) => ({
     try {
       const res = await axiosInstance.post("/Account/GetStudentDetail");
       const student = JSON.parse(res.data.state || "[]")[0];
+      if (student?.RegID) {
+        localStorage.setItem("RegID", student.RegID);
+      }
       set({ student });
     } catch (error) {
       console.error("❌ Error fetching student:", error);

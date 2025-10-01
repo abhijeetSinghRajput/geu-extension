@@ -29,32 +29,33 @@ const QuickAccessPanel = () => {
   const [activeDialog, setActiveDialog] = useState(null);
   const [enhancedHomepage, setEnhancedHomepage] = useState(false);
 
-  // Load enhanced state from localStorage on component mount
+  const isProfilePage =
+    window.location.href.startsWith("https://student.geu.ac.in/Account/Cyborg_StudentMenu");
+
+  // Load enhanced state ONLY on profile page
   useEffect(() => {
+    if (!isProfilePage) return;
+
     const savedEnhancedState = localStorage.getItem(ENHANCE_STORAGE_KEY);
     if (savedEnhancedState !== null) {
       const isEnhanced = JSON.parse(savedEnhancedState);
       setEnhancedHomepage(isEnhanced);
-      
-      // Apply the saved state to the DOM
+
       if (isEnhanced) {
         applyEnhancedHomepageState(true);
       }
     }
-  }, []);
+  }, [isProfilePage]);
 
-  // Function to apply enhanced homepage state to DOM
   const applyEnhancedHomepageState = (isEnhanced) => {
+    if (!isProfilePage) return; // block applying enhance mode outside profile
+
     const defaultContainer = document.getElementById("body");
     let customContainer = document.getElementById("geu-custom-homepage");
 
-    // Set background color only when enhanced
-    if (isEnhanced) {
-      document.body.style.backgroundColor = "hsl(var(--background))";
-    } else {
-      // Reset to original background color when not enhanced
-      document.body.style.backgroundColor = "";
-    }
+    document.body.style.backgroundColor = isEnhanced
+      ? "hsl(var(--background))"
+      : "";
 
     if (customContainer) {
       customContainer.style.display = isEnhanced ? "block" : "none";
@@ -62,7 +63,6 @@ const QuickAccessPanel = () => {
         defaultContainer.style.display = isEnhanced ? "none" : "block";
       }
     } else if (isEnhanced) {
-      // First time injection
       customContainer = document.createElement("div");
       customContainer.id = "geu-custom-homepage";
       customContainer.style.display = "block";
@@ -77,29 +77,22 @@ const QuickAccessPanel = () => {
   };
 
   const handleEnhanceToggle = () => {
+    if (!isProfilePage) return; // safeguard
+
     const newEnhancedState = !enhancedHomepage;
-    
-    // Update state
     setEnhancedHomepage(newEnhancedState);
-    
-    // Save to localStorage
     localStorage.setItem(ENHANCE_STORAGE_KEY, JSON.stringify(newEnhancedState));
-    
-    // Apply to DOM
     applyEnhancedHomepageState(newEnhancedState);
   };
 
-  // Cleanup function for component unmount
   useEffect(() => {
     return () => {
-      // Reset background color when component unmounts (optional)
       document.body.style.backgroundColor = "";
     };
   }, []);
 
   return (
     <>
-      {/* Quick Access Buttons */}
       <div className="z-[1001] border bg-background p-[6px] rounded-[20px] fixed bottom-4 right-4 flex gap-2 text-muted-foreground">
         <TooltipWrapper content="Notification" side="top">
           <Notification
@@ -108,27 +101,33 @@ const QuickAccessPanel = () => {
           />
         </TooltipWrapper>
 
-        {data.map((item) => (
-          <TooltipWrapper key={item.title} content={item.title} side="top">
-            <Button
-              variant={
-                item.title === "Enhance" && enhancedHomepage
-                  ? "default"
-                  : "ghost"
-              }
-              className={`size-[42px] rounded-[16px]`}
-              onClick={() => {
-                if (item.title === "Enhance") {
-                  handleEnhanceToggle();
-                } else {
-                  setActiveDialog(item.title);
+        {data
+          .filter(
+            (item) =>
+              item.title !== "Enhance" ||
+              (item.title === "Enhance" && isProfilePage)
+          )
+          .map((item) => (
+            <TooltipWrapper key={item.title} content={item.title} side="top">
+              <Button
+                variant={
+                  item.title === "Enhance" && enhancedHomepage
+                    ? "default"
+                    : "ghost"
                 }
-              }}
-            >
-              <item.icon className="h-5 w-5" />
-            </Button>
-          </TooltipWrapper>
-        ))}
+                className="size-[42px] rounded-[16px]"
+                onClick={() => {
+                  if (item.title === "Enhance") {
+                    handleEnhanceToggle();
+                  } else {
+                    setActiveDialog(item.title);
+                  }
+                }}
+              >
+                <item.icon className="h-5 w-5" />
+              </Button>
+            </TooltipWrapper>
+          ))}
       </div>
 
       {/* Dialogs */}

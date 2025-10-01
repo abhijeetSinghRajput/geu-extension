@@ -15,12 +15,20 @@ export const useAttendanceStore = create((set, get) => ({
   },
 
   getAllAttendanceSubjects: async () => {
-    const { student } = useStudentStore.getState(); // ✅ use student
-    const RegID = student?.RegID;
+    const { student, getStudentProfile } = useStudentStore.getState();
+    const RegID = student?.RegID || localStorage.getItem("RegID");
 
+    // ✅ Fallback: call getStudentProfile if still no RegID
     if (!RegID) {
-      console.log("❌ RegID not provided");
-      return;
+      console.log("⚠️ RegID missing, fetching student profile...");
+      const fetchedStudent = await getStudentProfile();
+      RegID = fetchedStudent?.RegID;
+
+      // If still not found, stop execution
+      if (!RegID) {
+        console.log("❌ RegID not provided after profile fetch");
+        return;
+      }
     }
 
     set({
@@ -68,12 +76,19 @@ export const useAttendanceStore = create((set, get) => ({
   },
 
   getAttendanceBySubject: async (SubjectID, data = {}) => {
-    const { student } = useStudentStore.getState(); 
-    const RegID = student?.RegID;
+    const { student, getStudentProfile } = useStudentStore.getState();
+    const RegID = student?.RegID || localStorage.getItem("RegID");
 
     if (!RegID) {
-      console.log("❌ RegID not provided");
-      return;
+      console.log("⚠️ RegID missing, fetching student profile...");
+      const fetchedStudent = await getStudentProfile();
+      RegID = fetchedStudent?.RegID;
+
+      // If still not found, stop execution
+      if (!RegID) {
+        console.log("❌ RegID not provided after profile fetch");
+        return;
+      }
     }
 
     set({

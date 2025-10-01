@@ -50,7 +50,7 @@ const Backlogs = ({ backlogs }) => {
     <Card className="rounded-2xl overflow-hidden">
       <CardHeader className="border bg-muted">
         <div className="flex justify-between items-start">
-          <div className="space-y-2">
+          <div className="space-y-[8px]">
             <CardTitle className="text-[14px]">Backlog Details</CardTitle>
             <CardDescription className="flex gap-2">
               <Badge
@@ -90,7 +90,7 @@ const Backlogs = ({ backlogs }) => {
 
       <CardContent className="border p-0">
         {Array.isArray(backlogs) && backlogs.length > 0 ? (
-          <div className="space-y-6">
+          <div className="space-y-[24px]">
             <DataTable
               data={backlogs}
               columns={columns}

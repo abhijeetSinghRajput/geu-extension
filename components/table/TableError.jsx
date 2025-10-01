@@ -30,7 +30,7 @@ const TableError = ({
     >
       <Card className="overflow-hidden relative">
         <div className="absolute z-20 inset-0 bg-background/70 flex items-center justify-center p-4">
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-[16px]">
             <AlertTriangle className="h-[48px] w-[48px] mx-auto text-destructive" />
             <h3 className="text-[24px] font-semibold text-destructive">{heading}</h3>
             <p className="text-destructive max-w-md">

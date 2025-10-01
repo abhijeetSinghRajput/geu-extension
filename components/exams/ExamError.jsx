@@ -13,10 +13,10 @@ const ExamError = ({ onReload, description }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ staggerChildren: 0.1 }}
-        className="space-y-4 w-full relative"
+        className="space-y-[16px] w-full relative"
       >
         <div className="absolute z-20 opacity inset-0 bg-background/70 flex items-center justify-center p-4">
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-[16px]">
             <AlertTriangle className="h-12 w-12 mx-auto text-destructive" />
             <p className="text-destructive max-w-md">
               {description ||
@@ -43,7 +43,7 @@ const ExamError = ({ onReload, description }) => {
                 <Skeleton className="animate-none bg-destructive/30 size-8" />
               </CardHeader>
               <CardContent className="flex p-6 justify-between items-start">
-                <div className="space-y-2">
+                <div className="space-y-[8px]">
                   <Skeleton className={"animate-none bg-destructive/30 h-7 w-[100px]"} />
                   <Skeleton className={"animate-none bg-destructive/30 h-7 w-[100px]"} />
                 </div>

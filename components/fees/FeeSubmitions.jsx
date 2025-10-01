@@ -82,8 +82,8 @@ const FeeSubmissions = () => {
     }));
 
   return (
-    <div className="w-full space-y-4">
-      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 my-[16px]">
+    <div className="w-full space-y-[16px]">
+      <h2 className="text-primary text-[24px] sm:text-3xl font-bold p-0 my-[16px]">
         Fee Submissions
       </h2>
 
@@ -128,7 +128,7 @@ const FeeSubmissions = () => {
         </CardHeader>
         <CardContent>
           <div className="flex gap-6 text-[14px]">
-            <div className="flex-1 space-y-2">
+            <div className="flex-1 space-y-[8px]">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">
                   Total Course Fees:
@@ -156,7 +156,7 @@ const FeeSubmissions = () => {
             {hasHostelFees && (
               <div className="flex-1">
                 <h4 className="font-semibold mb-3">Hostel Payment Details</h4>
-                <div className="space-y-2">
+                <div className="space-y-[8px]">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">
                       Total Hostel Fees:

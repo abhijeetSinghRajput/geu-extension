@@ -87,7 +87,7 @@ const HostelFee = ({ data, totals, columns, hasHostelFees = false }) => {
         </CardHeader>
         <CardContent className="p-0">
           {hasHostelFees ? (
-            <div className="space-y-6">
+            <div className="space-y-[24px]">
               <DataTable
                 data={data}
                 columns={columns}

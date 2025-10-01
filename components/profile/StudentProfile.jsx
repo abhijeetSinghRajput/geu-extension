@@ -97,7 +97,7 @@ export function StudentProfile() {
               >
                 <ProfileDialog />
 
-                <div className="text-center md:text-left space-y-2">
+                <div className="text-center md:text-left space-y-[8px]">
                   <CardTitle className="text-[30px] font-bold tracking-tight">
                     <motion.div
                       initial={{ opacity: 0 }}

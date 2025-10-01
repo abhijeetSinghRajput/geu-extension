@@ -99,7 +99,7 @@ const App = () => {
           </CardHeader>
 
           {/* Content */}
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-[24px]">
             {/* Quick Links */}
             <div>
               <div className="grid grid-cols-2 gap-2">

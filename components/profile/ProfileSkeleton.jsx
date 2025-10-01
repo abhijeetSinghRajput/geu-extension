@@ -36,7 +36,7 @@ const ProfileSkeleton = () => {
               <img src={avatar} className="opacity-20" />
             </div>
 
-            <div className="text-center md:text-left space-y-2">
+            <div className="text-center md:text-left space-y-[8px]">
               <CardTitle className="text-[30px] font-bold tracking-tight">
                 <Skeleton className="h-[36px" />
               </CardTitle>
@@ -78,12 +78,12 @@ const ProfileSkeleton = () => {
           {activeTab === 0 && (
             <div className="p-[32px]">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
-                <div className="space-y-6">
+                <div className="space-y-[24px]">
                   <div>
                     <h3 className="text-[14px] font-medium text-muted-foreground uppercase mb-2">
                       Enrollment Details
                     </h3>
-                    <dl className="space-y-4">
+                    <dl className="space-y-[16px]">
                       <div className="flex items-start">
                         <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
                           Enrollment No
@@ -100,16 +100,24 @@ const ProfileSkeleton = () => {
                           <Skeleton className="h-[20px] w-[96px]" />
                         </dd>
                       </div>
+                      <div className="flex items-start">
+                        <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
+                          Registration Id
+                        </dt>
+                        <dd className="text-[14px] font-mono">
+                          <Skeleton className="h-[20px] w-[96px]" />
+                        </dd>
+                      </div>
                     </dl>
                   </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-[24px]">
                   <div>
                     <h3 className="text-[14px] font-medium text-muted-foreground uppercase mb-[8px]">
                       Contact Information
                     </h3>
-                    <dl className="space-y-4">
+                    <dl className="space-y-[16px]">
                       <div className="flex items-start">
                         <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
                           Personal Email
@@ -136,12 +144,12 @@ const ProfileSkeleton = () => {
           {/* Education Tab */}
           {activeTab === 1 && (
             <div className="p-[32px]">
-              <div className="space-y-8">
+              <div className="space-y-[32px]">
                 <div>
                   <h3 className="text-[14px] font-medium text-muted-foreground uppercase mb-4">
                     Academic Performance
                   </h3>
-                  <div className="space-y-6">
+                  <div className="space-y-[24px]">
                     <div>
                       <div className="flex justify-between mb-1">
                         <span className="text-[14px] font-medium">10th Grade</span>
@@ -181,12 +189,12 @@ const ProfileSkeleton = () => {
           {activeTab === 2 && (
             <div className="p-[32px]">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
-                <div className="space-y-6">
+                <div className="space-y-[24px]">
                   <div>
                     <h3 className="text-[14px] font-medium text-muted-foreground uppercase mb-4">
                       Personal Details
                     </h3>
-                    <dl className="space-y-4">
+                    <dl className="space-y-[16px]">
                       <div className="flex items-start">
                         <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
                           <div className="flex items-center gap-[8px]">
@@ -234,12 +242,12 @@ const ProfileSkeleton = () => {
                   </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-[24px]">
                   <div>
                     <h3 className="text-[14px] font-medium text-muted-foreground uppercase mb-4">
                       Family Details
                     </h3>
-                    <dl className="space-y-4">
+                    <dl className="space-y-[16px]">
                       <div className="flex items-start">
                         <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
                           Father's Name

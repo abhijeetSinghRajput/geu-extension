@@ -182,7 +182,7 @@ const AttendanceTable = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="text-primary max-w-[512px]">
           <DialogHeader>
-            <DialogTitle className="text-2xl p-0 m-0">
+            <DialogTitle className="text-[24px] p-0 m-0">
               {selectedSubject?.Subject || "Subject Details"}
             </DialogTitle>
           </DialogHeader>
@@ -190,7 +190,7 @@ const AttendanceTable = () => {
             {selectedSubject && (
               <div className="flex justify-between items-center">
                 {/* Left side - Subject Code and Faculty */}
-                <div className="space-y-2 text-[14px]">
+                <div className="space-y-[8px] text-[14px]">
                   <div className="flex gap-2 items-center">
                     <Clipboard className="text-muted-foreground size-[16px]" />
                     <p className="font-semibold m-0">

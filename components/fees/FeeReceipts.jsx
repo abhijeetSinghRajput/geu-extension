@@ -170,7 +170,7 @@ const FeeReceipts = ({ data }) => {
 
         <CardContent className="border p-0">
           {processedData.length > 0 ? (
-            <div className="space-y-6">
+            <div className="space-y-[24px]">
               <DataTable
                 data={processedData}
                 columns={columns}

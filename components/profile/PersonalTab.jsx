@@ -15,7 +15,7 @@ const PersonalTab = ({ tabContentVariants, textVariants }) => {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-[32p]">
         <motion.div
-          className="space-y-6"
+          className="space-y-[24px]"
           variants={{
             visible: {
               transition: {
@@ -28,7 +28,7 @@ const PersonalTab = ({ tabContentVariants, textVariants }) => {
             <h3 className="p-0 m-0 mb-[16px] text-[14px] font-semibold text-muted-foreground uppercase">
               Personal Details
             </h3>
-            <dl className="space-y-4">
+            <dl className="space-y-[16px]">
               <motion.div className="flex items-start" variants={textVariants}>
                 <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
                   <div className="flex items-center gap-[8px]">
@@ -88,7 +88,7 @@ const PersonalTab = ({ tabContentVariants, textVariants }) => {
         </motion.div>
 
         <motion.div
-          className="space-y-6"
+          className="space-y-[24px]"
           variants={{
             visible: {
               transition: {
@@ -102,7 +102,7 @@ const PersonalTab = ({ tabContentVariants, textVariants }) => {
             <h3 className="p-0 m-0 mb-[16px] text-[14px] font-semibold text-muted-foreground uppercase">
               Family Details
             </h3>
-            <dl className="space-y-4">
+            <dl className="space-y-[16px]">
               <motion.div className="flex items-start" variants={textVariants}>
                 <dt className="w-[160px] flex-shrink-0 text-[14px] font-medium text-muted-foreground">
                   Father's Name

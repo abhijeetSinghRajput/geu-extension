@@ -13,8 +13,8 @@ import { FileTextIcon, HomeIcon, WalletIcon } from "lucide-react";
 
 const FeeSkeleton = ({ heading = "Fee Submissions" }) => {
   return (
-    <div className="w-full space-y-4">
-      <h2 className="text-primary text-2xl sm:text-3xl font-bold p-0 my-[16px]">
+    <div className="w-full space-y-[16px]">
+      <h2 className="text-primary text-[24px] sm:text-3xl font-bold p-0 my-[16px]">
         Fee Submissions
       </h2>
 
@@ -62,7 +62,7 @@ const PaymentDetail = ({ className = "" }) => {
   return (
     <div className={className}>
       <Skeleton className="h-6 max-w-44 mb-3" />
-      <div className="space-y-2">
+      <div className="space-y-[8px]">
         {[...Array(3)].map((_, i) => (
           <div key={i} className="flex justify-between">
             <Skeleton className="h-6 w-36" />

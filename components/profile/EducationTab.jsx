@@ -88,7 +88,7 @@ const EducationTab = ({ tabContentVariants, textVariants }) => {
       exit="exit"
       className="p-[32px]"
     >
-      <div className="space-y-8">
+      <div className="space-y-[32px]">
         <motion.div variants={textVariants}>
           <h3 className="p-0 m-0 mb-[16px] text-[14px] font-semibold text-muted-foreground uppercase">
             Academic Performance
@@ -96,7 +96,7 @@ const EducationTab = ({ tabContentVariants, textVariants }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] items-center">
             {/* Progress Bars (still show percentage) */}
-            <div className="space-y-6">
+            <div className="space-y-[24px]">
               {chartData.map((item, idx) => (
                 <motion.div key={idx} variants={textVariants}>
                   <div className="flex justify-between mb-1">

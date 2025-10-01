@@ -31,14 +31,102 @@ export default defineContentScript({
   matches: ["*://*.student.geu.ac.in/*", "*://*.student.gehu.ac.in/*"],
   allFrames: true,
   main() {
+    // 🚫 Ignore iframes
+    if (window.self !== window.top) {
+      console.log("Skipping injection inside iframe");
+      return;
+    }
+
     console.log("✅ CONTENT SCRIPT IS LOADING ON GEU!");
+
+    // inject QuickAccessPanel everywhere
+    injectQuickAccess();
+
+    // wait for profile to inject IdCard + PhotoUploader
     waitForProfile();
   },
 });
 
 function waitForProfile() {
-  const img = document.getElementById("ImgEmp");
-  if (img) injectComponents(img);
+  const observer = new MutationObserver(() => {
+    const img = document.getElementById("ImgEmp");
+    if (img) {
+      injectProfileComponents(img);
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function injectQuickAccess() {
+  if (document.getElementById("geu-quick-access")) return;
+
+  const quickAccess = document.createElement("div");
+  quickAccess.id = "geu-quick-access";
+  document.body.appendChild(quickAccess);
+
+  const quickAccessRoot = createRoot(quickAccess);
+  quickAccessRoot.render(
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <QuickAccessPanel />
+      </TooltipProvider>
+    </ThemeProvider>
+  );
+}
+
+function injectProfileComponents(img) {
+  if (document.getElementById("geu-extension-btn")) return;
+
+  // wrapper for positioning
+  const wrapper = document.createElement("div");
+  wrapper.style.position = "relative";
+  wrapper.style.width = "max-content";
+  wrapper.style.margin = "auto";
+  img.parentElement.insertBefore(wrapper, img);
+  wrapper.appendChild(img);
+
+  // container for ProfilePhotoUploader
+  const dialogContainer = document.createElement("div");
+  dialogContainer.id = "geu-extension-btn";
+  dialogContainer.style.position = "absolute";
+  dialogContainer.style.bottom = "4px";
+  dialogContainer.style.right = "4px";
+  wrapper.appendChild(dialogContainer);
+
+  // remove navbar & extras (only profile page)
+  document.querySelector(".row.rowgap")?.style &&
+    (document.querySelector(".row.rowgap").style.display = "none");
+  document.querySelector("#header-navbar.div-only-mobile")?.style &&
+    (document.querySelector("#header-navbar.div-only-mobile").style.display =
+      "none");
+
+  // container for IdCardDialog
+  const idCardContainer = document.createElement("div");
+  idCardContainer.id = "geu-id-card-dialog";
+  document.body.appendChild(idCardContainer);
+
+  // React roots
+  const dialogRoot = createRoot(dialogContainer);
+  const idCardRoot = createRoot(idCardContainer);
+
+  // Mount Profile Photo Uploader
+  dialogRoot.render(
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <ProfilePhotoUploader img={img} />
+      </TooltipProvider>
+    </ThemeProvider>
+  );
+
+  // Mount IdCard Dialog
+  idCardRoot.render(
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <IdCardDialog img={img} />
+      </TooltipProvider>
+    </ThemeProvider>
+  );
 }
 
 function injectComponents(img) {
@@ -91,20 +179,20 @@ function injectComponents(img) {
     </ThemeProvider>
   );
 
-  // Mount Quick Access Panel
-  quickAccessRoot.render(
-    <ThemeProvider defaultTheme="dark">
-      <TooltipProvider>
-          <QuickAccessPanel />
-      </TooltipProvider>
-    </ThemeProvider>
-  );
-
   // Mount IdCard Dialog
   idCardRoot.render(
     <ThemeProvider defaultTheme="dark">
       <TooltipProvider>
         <IdCardDialog img={img} />
+      </TooltipProvider>
+    </ThemeProvider>
+  );
+
+  // Mount Quick Access Panel
+  quickAccessRoot.render(
+    <ThemeProvider defaultTheme="dark">
+      <TooltipProvider>
+        <QuickAccessPanel />
       </TooltipProvider>
     </ThemeProvider>
   );

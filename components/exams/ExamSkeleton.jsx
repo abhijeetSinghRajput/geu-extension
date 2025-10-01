@@ -24,7 +24,7 @@ const ExamSkeleton = () => {
         </TabsList>
 
         {/* Results Section */}
-        <TabsContent value="results" className="mt-4 space-y-4">
+        <TabsContent value="results" className="mt-4 space-y-[16px]">
           {[...Array(2)].map((_, index) => (
             <Card key={index} className="rounded-3xl">
               <CardHeader className="pb-0 justify-between items-center flex-row">
@@ -32,7 +32,7 @@ const ExamSkeleton = () => {
                 <Skeleton className="size-8 rounded-full" />
               </CardHeader>
               <CardContent className="flex p-6 justify-between items-start">
-                <div className="space-y-2">
+                <div className="space-y-[8px]">
                   <Skeleton className="h-5 w-[100px]" />
                   <Skeleton className="h-5 w-[100px]" />
                 </div>
@@ -48,7 +48,7 @@ const ExamSkeleton = () => {
         </TabsContent>
 
         {/* Backlogs Section */}
-        <TabsContent value="backlogs" className="mt-4 space-y-4">
+        <TabsContent value="backlogs" className="mt-4 space-y-[16px]">
           {[...Array(1)].map((_, index) => (
             <Card key={index} className="rounded-3xl">
               <CardHeader className="pb-0 justify-between items-center flex-row">

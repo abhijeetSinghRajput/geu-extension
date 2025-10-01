@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const CalendarSkeleton = () => {
   return (
-    <div className="bg-input/30 rounded-md border p-3 space-y-4">
+    <div className="bg-input/30 rounded-md border p-3 space-y-[16px]">
       {/* Calendar Header */}
       <div className="flex justify-between items-center gap-2">
         <Skeleton className="h-[32px] w-[32px] rounded-md" />
