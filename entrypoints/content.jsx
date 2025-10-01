@@ -27,6 +27,13 @@ import {
 import { ThemeProvider } from "@/components/theme-provider";
 import IdCard from "@/components/profile/IdCard";
 
+
+const NOT_ALLOWED = [
+  "/", // login
+  "/Account/ForgotID",
+  "/Account/ForgotPassword",
+];
+
 export default defineContentScript({
   matches: ["*://*.student.geu.ac.in/*", "*://*.student.gehu.ac.in/*"],
   allFrames: true,
@@ -38,6 +45,12 @@ export default defineContentScript({
     }
 
     console.log("✅ CONTENT SCRIPT IS LOADING ON GEU!");
+    const {pathname} = new URL(window.location.href);
+    const isNotAllowed = NOT_ALLOWED.includes(pathname);
+    if (isNotAllowed) {
+      console.log(`Skipping injection on  ${pathname}`);
+      return;
+    }
 
     // inject QuickAccessPanel everywhere
     injectQuickAccess();

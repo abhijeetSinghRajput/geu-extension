@@ -14,7 +14,7 @@ const IdCard = () => {
     if(!idCard) getIdCard();
   }, []);
 
-  if (loadingIdCard || 0) {
+  if (loadingIdCard ) {
     return (
       <div className="mx-auto h-[457px] grid grid-cols-1 p-2 gap-0.5 w-max bg-accent">
         <Skeleton className={"w-[350px] sm:w-[400px] h-full"} />

@@ -28,9 +28,7 @@ const ENHANCE_STORAGE_KEY = "geu-enhanced-homepage";
 const QuickAccessPanel = () => {
   const [activeDialog, setActiveDialog] = useState(null);
   const [enhancedHomepage, setEnhancedHomepage] = useState(false);
-
-  const isProfilePage =
-    window.location.href.startsWith("https://student.geu.ac.in/Account/Cyborg_StudentMenu");
+  const isProfilePage = new URL(window.location.href).pathname === "/Account/Cyborg_StudentMenu";
 
   // Load enhanced state ONLY on profile page
   useEffect(() => {

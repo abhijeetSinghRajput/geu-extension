@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/mode-toggle";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import TooltipWrapper from "@/components/TooltipWrapper";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -89,8 +88,6 @@ const App = () => {
                     </Button>
                   </TooltipWrapper>
                 )}
-
-                <ModeToggle variant="secondary" className={"size-9"} />
               </div>
             </div>
             <CardDescription>

@@ -49,7 +49,8 @@ const tabContentVariants = {
 
 export function StudentProfile() {
   const [activeTab, setActiveTab] = useState(0);
-  const { student, loading, getStudentProfile, errors, getIdCard } = useStudentStore();
+  const { student, loadingStudent, getStudentProfile, errors, getIdCard } =
+    useStudentStore();
 
   useEffect(() => {
     getStudentProfile();
@@ -62,13 +63,25 @@ export function StudentProfile() {
     { id: 2, title: "Personal", icon: <UserCircle className="h-4 w-4" /> },
   ];
 
-  if (loading) {
+  if (loadingStudent) {
     return <ProfileSkeleton />;
   }
 
-  if (errors.getStudentProfile || !student) {
+  if (!student) {
     return (
-      <ProfileError description={errors.getStudentProfile} onReload={getStudentProfile} />
+      <ProfileError
+        variant="accent"
+        description={errors.getStudentProfile}
+        onReload={getStudentProfile}
+      />
+    );
+  }
+  if (errors.getStudentProfile) {
+    return (
+      <ProfileError
+        description={errors.getStudentProfile}
+        onReload={getStudentProfile}
+      />
     );
   }
 

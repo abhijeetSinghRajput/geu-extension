@@ -46,7 +46,7 @@ const PaymentSummary = () => {
   return (
     <Card>
       <CardHeader>
-        <Skeleton className="h-4 max-w-44" />
+        <Skeleton className="h-[16px] max-w-[176px]" />
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -61,18 +61,18 @@ const PaymentSummary = () => {
 const PaymentDetail = ({ className = "" }) => {
   return (
     <div className={className}>
-      <Skeleton className="h-6 max-w-44 mb-3" />
+      <Skeleton className="h-[24px] max-w-[176px] mb-3" />
       <div className="space-y-[8px]">
         {[...Array(3)].map((_, i) => (
           <div key={i} className="flex justify-between">
-            <Skeleton className="h-6 w-36" />
-            <Skeleton className="h-6 w-20" />
+            <Skeleton className="h-[24px] w-[144px]" />
+            <Skeleton className="h-[24px] w-[80px]" />
           </div>
         ))}
         <div className="border-t pt-2 mt-2">
           <div className="flex justify-between">
-            <Skeleton className="h-6 w-24" />
-            <Skeleton className="h-6 w-20" />
+            <Skeleton className="h-[24px] w-[96px]" />
+            <Skeleton className="h-[24px] w-[80px]" />
           </div>
         </div>
       </div>
@@ -82,12 +82,12 @@ const PaymentDetail = ({ className = "" }) => {
 
 const FeeSummaryCards = () => {
   return (
-    <Card className="rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <Card className="rounded-[16px] p-[24px] grid grid-cols-1 md:grid-cols-3 gap-4">
       {[...Array(3)].map((_, i) => (
         <Card key={i} className="bg-muted">
           <CardHeader className="p-4">
-            <Skeleton className="h-5 max-w-80" />
-            <Skeleton className="h-8 max-w-24" />
+            <Skeleton className="h-[20px] max-w-[320px]" />
+            <Skeleton className="h-[32px] max-w-[96px]" />
           </CardHeader>
         </Card>
       ))}
